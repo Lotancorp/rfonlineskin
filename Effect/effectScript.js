@@ -178,9 +178,9 @@ function inputEff() {
     // Construct the combined path
     let combinedPath;
     if (isQGChecked) {
-        combinedPath = `.\Chef\\QG\\EFF\\${chef}${option1}\\QG_${folder1}\\QG_${folder2}.EFF`;
+        combinedPath = `.\\Chef\\QG\\EFF\\${chef}${option1}\\QG_${folder1}\\QG_${folder2}`;
     } else {
-        combinedPath = `.\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}.EFF`;
+        combinedPath = `.\\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}`;
     }
 
     console.log('combinedPath:', combinedPath);
