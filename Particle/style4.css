@@ -1,0 +1,446 @@
+/* CSS untuk halaman Effect File Viewer */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background-color: #ffffff;
+    padding-top: 20px;
+}
+
+.toolbar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 1000;
+}
+
+.import-button {
+    padding: 8px 16px;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-button {
+    padding: 8px 16px;
+    background-color: #1565C0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+}
+
+.table-container {
+    margin-top: 50px;
+    width: 80%;
+    max-width: 800px;
+    height: 60vh;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #B4D8FC;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Posisi tombol save di bawah tabel */
+.save-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.save-button {
+    padding: 10px 20px;
+    background-color: #1565C0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Styling untuk Add Row buttons */
+#addRowButton {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 5px 5px 0 0;
+}
+
+#addRowButton:hover {
+    background-color: #45a049;
+}
+
+#editorButton {
+    padding: 8px 12px;
+    background-color: #3da7d1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 5px 5px 0 0;
+}
+
+#editorButton:hover {
+    background-color: #2d80a1;
+}
+
+
+/* Pastikan setiap elemen tetap, tapi tidak menghalangi tabel */
+.toolbar, .scroll-controls, .edit-switch-container {
+    z-index: 1000;
+}
+
+#buttonContainer {
+    display: flex;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+/* Styling untuk tombol Top dan Down serta Edit Mode Switch */
+.edit-switch-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.scroll-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Jarak antar tombol */
+    margin-bottom: 10px;
+}
+
+.scroll-button {
+    padding: 8px 10px;
+    background-color: #1565C0;
+    width: 70px ;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.scroll-button:hover {
+    background-color: #0D47A1;
+}
+
+/* Styling untuk Edit Mode Switch */
+.edit-switch-label {
+    font-size: 14px;
+    color: #0D47A1;
+    display: flex;
+    align-items: center;
+}
+
+.edit-switch-label input[type="checkbox"] {
+    display: none;
+}
+
+.edit-switch-label .slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-switch-label .slider::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.edit-switch-label input[type="checkbox"]:checked + .slider {
+    background-color: #4CAF50;
+}
+
+.edit-switch-label input[type="checkbox"]:checked + .slider::before {
+    transform: translateX(20px);
+}
+/* Styling untuk baris input */
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Memberikan jarak antar elemen */
+    margin-bottom: 10px; /* Memberikan jarak antara baris */
+    padding: 10px;
+    background-color: #f0f7ff; /* Latar belakang biru sangat terang */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk label */
+.input-row label {
+    font-size: 14px;
+    color: #0D47A1; /* Warna teks biru gelap */
+    font-weight: bold;
+}
+
+/* Styling untuk textbox */
+.input-row input[type="text"] {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 150px; /* Lebar default untuk textboxes */
+}
+
+/* Styling untuk tombol "Availability" dan "Submit Particle" */
+.input-row button {
+    padding: 8px 12px;
+    background-color: #1565C0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.input-row button:hover {
+    background-color: #0D47A1; /* Warna lebih gelap saat hover */
+}
+
+/* Styling untuk dropdown */
+.input-row select {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #0D47A1; /* Warna teks dropdown */
+}
+
+/* Styling untuk checkbox */
+.input-row input[type="checkbox"] {
+    transform: scale(1.2); /* Ukuran checkbox yang sedikit lebih besar */
+    margin-right: 5px; /* Memberikan jarak antara checkbox dan labelnya */
+}
+
+/* Styling untuk Particle Number Textbox */
+#particleNumber {
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%; /* Atur lebar penuh sesuai kebutuhan */
+}
+
+/* Floating label styling */
+.floating-label {
+    position: absolute;
+    top: -18px; /* Atur posisi di atas textbox */
+    left: 8px;
+    font-size: 2px;
+    color: green;
+    display: none; /* Awalnya disembunyikan */
+    background: white; /* Background untuk menutupi konten di bawahnya */
+    padding: 0 4px;
+}
+
+/* Warna untuk status yang tersedia */
+#particleNumber.available {
+    background-color: #d4f8d4; /* Hijau muda */
+    color: black;
+}
+
+.floating-label.available {
+    color: green;
+    display: inline; /* Tampilkan saat nomor tersedia */
+}
+
+/* Warna untuk status yang sudah ada */
+#particleNumber.not-available {
+    background-color: #f8d4d4; /* Merah muda */
+    color: black;
+}
+
+.floating-label.not-available {
+    color: red;
+    display: inline; /* Tampilkan saat nomor sudah ada */
+}
+input:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: none;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #ff0000;
+}
+
+/* Styling konten modal */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.modal-textarea,
+.modal-input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.modal-textarea {
+    height: 200px;
+    resize: vertical;
+}
+
+.modal-input:focus,
+.modal-textarea:focus {
+    border-color: #1565C0;
+    outline: none;
+}
+
+.modal-button {
+    padding: 12px 20px;
+    background-color: #1565C0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-button:hover {
+    background-color: #0D47A1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-button:active {
+    transform: translateY(1px);
+}
+
+/* Styling khusus untuk output textarea */
+#outputBoxModal {
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-textarea {
+        height: 150px;
+    }
+}
+
+/* Box-sizing universal */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}

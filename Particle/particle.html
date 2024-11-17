@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle.ini Viewer</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+
+    <!-- Toolbar di bagian atas untuk tombol Import dan Search -->
+    <div class="toolbar">
+        <input type="file" id="importFile" class="import-button" accept=".ini" onchange="handleFileUpload(event)" />
+        <input type="text" id="searchInput" class="search-input" placeholder="Search..." />
+        <button class="search-button" onclick="searchTable()">Search</button>
+    </div>
+
+
+    
+    <!-- Container untuk tabel -->
+    <div id="tableContainer" class="table-container"></div>
+
+    <!-- Kontainer untuk tombol Add Row dan Add Column -->
+    <div id="buttonContainer" class="button-container">
+        <button id="addRowButton" onclick="addRow()">Add Row</button>
+        <button id="editorButton" onclick="EditNum()">EDIT Number</button>
+    </div>
+    
+    
+    <!-- Baris untuk Partikel Number -->
+    <div class="input-row" style="position: relative;">
+        <label id="particleNumberLabel" class="floating-label">Nomor tersedia</label>
+        <input type="text" id="particleNumber" placeholder="Particle Number" oninput="checkParticleNumber()">
+         <!-- Textbox baru untuk Name of Skin -->
+        <input type="text" id="skinName" placeholder="Name of Skin" style="margin-left: 10px;">
+   
+        <button id="availabilityButton" onclick="checkAvailability()">Availability</button>
+    </div>
+
+
+    <!-- Baris untuk QG Checkbox, Master Folder, Dropdown, Folder Name, dan Submit Button -->
+    <div class="input-row">
+        <input type="checkbox" id="qgCheckbox" onclick="toggleMasterFolder()">
+        <label for="qgCheckbox">QG</label>
+
+        <input type="text" id="masterFolder" placeholder="Your Master Folder" title="Input your Master Folder">
+
+        <label for="particleType">Type:</label>
+        <select id="particleType" title="Select Skin Type">
+            <option value="ARMOR_">ARMOR_</option>
+            <option value="BOOSTER_">BOOSTER_</option>
+            <option value="MASK_">MASK_</option>
+            <option value="QG_">QG_</option>
+            <option value="SPECIAL_">SPECIAL_</option>
+            <option value="WEAPON_">WEAPON_</option>
+        </select>
+
+        <input type="text" id="folderName" placeholder="Folder Name" title="Related Folder Name">
+        <!-- Textbox untuk SPT Name -->
+        <input type="text" id="sptName" placeholder="SPT Name" style="margin-left: 10px;" onkeydown="handleKeyPress(event)" title="SPT File Name">
+
+        <button id="submitParticleButton" onclick="submitParticle()">Submit Particle</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <!-- Konten modal -->
+            <div class="modal-body">
+                <textarea id="largeInputModal" class="modal-textarea" placeholder="Input Line Particle here"></textarea>
+                <input type="number" id="smallInputModal" class="modal-input" placeholder="New Number">
+                <button class="modal-button" onclick="editNumberModal()">Edit Number</button>
+                <textarea id="outputBoxModal" class="modal-textarea" readonly></textarea>
+                <button class="modal-button" onclick="insertDataFromEditorModal()">Insert into Main Table</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Tombol Save di bawah tabel -->
+    <div class="save-container">
+        <button class="save-button" onclick="saveData()">Save</button>
+    </div>
+
+    <!-- Switch untuk Edit Mode dan Tombol Scroll di kanan bawah -->
+    <div class="edit-switch-container">
+        <div class="scroll-controls">
+            <button class="scroll-button" onclick="scrollToTop()">Top</button>
+            <button class="scroll-button" onclick="scrollToBottom()">Down</button>
+        </div>
+        <label class="edit-switch-label">
+            <input type="checkbox" id="editSwitch" onchange="toggleEditMode()" alt="Edit Mode" />
+            <span class="slider"></span> Edit Mode
+        </label>
+    </div>
+
+    <!-- Menyisipkan file JavaScript -->
+    <script src="particle.js"></script>
+</body>
+</html>
