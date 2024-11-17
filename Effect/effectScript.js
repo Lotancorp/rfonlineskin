@@ -145,25 +145,35 @@ function scrollToBottom() {
         behavior: "smooth"
     });
 }
-function inputEff() {
-    // Check if the imported file is "EffectFileList.txt"
-    const importedFile = document.getElementById('importFile').files[0];
-    if (!importedFile || importedFile.name !== "EffectFileList.txt") {
-        alert("Please import 'EffectFileList.txt' file to proceed.");
-        return;
-    }
 
+// Fungsi untuk menangani Enter key pada chef-bar
+document.querySelector('.chef-bar').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Mencegah perilaku Enter default
+        inputEff(); // Panggil fungsi inputEff
+    }
+});
+
+function inputEff() {
     // Get values from input elements
     const effNo = document.getElementById("numEff").value;
     const chef = document.getElementById("chefDropdown1").value;
     const option1 = document.getElementById("chefDropdown2").value;
+
+    console.log('effNo:', effNo);
+    console.log('chef:', chef);
+    console.log('option1:', option1);
 
     // Convert folder names to uppercase
     let folder1 = document.getElementById("textbox1").value.toUpperCase();
     let folder2 = document.getElementById("textbox2").value.toUpperCase();
     folder2 += ".EFF"; // Append .EFF extension
 
+    console.log('folder1:', folder1);
+    console.log('folder2:', folder2);
+
     const isQGChecked = document.getElementById("qgCheckbox").checked;
+    console.log('isQGChecked:', isQGChecked);
 
     // Construct the combined path
     let combinedPath;
@@ -173,40 +183,8 @@ function inputEff() {
         combinedPath = `.\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}.EFF`;
     }
 
-    // Default value for the third column
-    const defaultColumn3 = 0;
+    console.log('combinedPath:', combinedPath);
 
-    // Ensure the table exists in #tableContainer
-    const tableContainer = document.getElementById("tableContainer");
-    if (tableContainer) {
-        let table = tableContainer.querySelector("table");
-        
-        // If the table doesn't exist, create a new one
-        if (!table) {
-            table = document.createElement("table");
-            tableContainer.appendChild(table);
-
-            // Create header row for the table
-            const headerRow = table.insertRow();
-            headerRow.insertCell(0).innerText = "EFF No.";
-            headerRow.insertCell(1).innerText = "Path";
-            headerRow.insertCell(2).innerText = "Value";
-        }
-
-        // Add a new row at the end of the table
-        const newRow = table.insertRow(-1);
-        newRow.insertCell(0).innerText = effNo;
-        newRow.insertCell(1).innerText = combinedPath;
-        newRow.insertCell(2).innerText = defaultColumn3;
-    } else {
-        alert("Table container not found. Please ensure a table is displayed.");
-    }
+    // Rest of your code...
 }
 
-// Fungsi untuk menangani Enter key pada chef-bar
-document.querySelector('.chef-bar').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Mencegah perilaku Enter default
-        inputEff(); // Panggil fungsi inputEff
-    }
-});
