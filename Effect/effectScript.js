@@ -146,56 +146,54 @@ function scrollToBottom() {
     });
 }
 function inputEff() {
-    // Periksa apakah file yang diimpor adalah "EffectFileList.txt"
+    // Check if the imported file is "EffectFileList.txt"
     const importedFile = document.getElementById('importFile').files[0];
     if (!importedFile || importedFile.name !== "EffectFileList.txt") {
         alert("Please import 'EffectFileList.txt' file to proceed.");
         return;
     }
 
-    // Ambil nilai dari setiap elemen input
+    // Get values from input elements
     const effNo = document.getElementById("numEff").value;
     const chef = document.getElementById("chefDropdown1").value;
-    const option1 = document.getElementById("chefDropdown1").value;
-    const option2 = document.getElementById("chefDropdown2").value;
+    const option1 = document.getElementById("chefDropdown2").value;
 
-    // Ubah nilai folder1 menjadi huruf kapital
+    // Convert folder names to uppercase
     let folder1 = document.getElementById("textbox1").value.toUpperCase();
-    
-    // Ubah nilai folder2 menjadi huruf kapital dan tambahkan ".EFF" di akhir
-    let folder2 = document.getElementById("textbox2").value.toUpperCase() + ".EFF";
-    
+    let folder2 = document.getElementById("textbox2").value.toUpperCase();
+    folder2 += ".EFF"; // Append .EFF extension
+
     const isQGChecked = document.getElementById("qgCheckbox").checked;
 
-    // Buat path kombinasi
+    // Construct the combined path
     let combinedPath;
     if (isQGChecked) {
-        combinedPath = `.${chef}\\${option1}${option2}\\QG_${folder1}\\QG_${folder2}`;
+        combinedPath = `.\Chef\\QG\\EFF\\${chef}${option1}\\QG_${folder1}\\QG_${folder2}`;
     } else {
-        combinedPath = `.${chef}\\${option1}${option2}\\${folder1}\\${folder2}`;
+        combinedPath = `.\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}`;
     }
 
-    // Nilai default untuk kolom ke-3
+    // Default value for the third column
     const defaultColumn3 = 0;
 
-    // Pastikan tabel sudah ada di dalam #tableContainer
+    // Ensure the table exists in #tableContainer
     const tableContainer = document.getElementById("tableContainer");
     if (tableContainer) {
         let table = tableContainer.querySelector("table");
         
-        // Jika tabel belum ada, buat tabel baru
+        // If the table doesn't exist, create a new one
         if (!table) {
             table = document.createElement("table");
             tableContainer.appendChild(table);
 
-            // Buat header kolom untuk tabel
+            // Create header row for the table
             const headerRow = table.insertRow();
             headerRow.insertCell(0).innerText = "EFF No.";
             headerRow.insertCell(1).innerText = "Path";
             headerRow.insertCell(2).innerText = "Value";
         }
 
-        // Tambahkan baris baru di akhir tabel
+        // Add a new row at the end of the table
         const newRow = table.insertRow(-1);
         newRow.insertCell(0).innerText = effNo;
         newRow.insertCell(1).innerText = combinedPath;
@@ -204,6 +202,7 @@ function inputEff() {
         alert("Table container not found. Please ensure a table is displayed.");
     }
 }
+
 // Fungsi untuk menangani Enter key pada chef-bar
 document.querySelector('.chef-bar').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
