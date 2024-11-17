@@ -155,27 +155,28 @@ document.querySelector('.chef-bar').addEventListener('keypress', function(event)
 });
 
 function inputEff() {
-    // Get values from input elements
+    // Periksa apakah file yang diimpor adalah "EffectFileList.txt"
+    const importedFile = document.getElementById('importFile').files[0];
+    if (!importedFile || importedFile.name !== "EffectFileList.txt") {
+        alert("Please import 'EffectFileList.txt' file to proceed.");
+        return;
+    }
+
+    // Ambil nilai dari setiap elemen input
     const effNo = document.getElementById("numEff").value;
     const chef = document.getElementById("chefDropdown1").value;
     const option1 = document.getElementById("chefDropdown2").value;
 
-    console.log('effNo:', effNo);
-    console.log('chef:', chef);
-    console.log('option1:', option1);
-
-    // Convert folder names to uppercase
+    // Ubah nilai folder1 menjadi huruf kapital
     let folder1 = document.getElementById("textbox1").value.toUpperCase();
-    let folder2 = document.getElementById("textbox2").value.toUpperCase();
-    folder2 += ".EFF"; // Append .EFF extension
 
-    console.log('folder1:', folder1);
-    console.log('folder2:', folder2);
+    // Ubah nilai folder2 menjadi huruf kapital dan tambahkan ".EFF" di akhir
+    let folder2 = document.getElementById("textbox2").value.toUpperCase();
+    folder2 += ".EFF"; // Tambahkan .EFF hanya sekali
 
     const isQGChecked = document.getElementById("qgCheckbox").checked;
-    console.log('isQGChecked:', isQGChecked);
 
-    // Construct the combined path
+    // Buat path kombinasi dengan backslash setelah titik
     let combinedPath;
     if (isQGChecked) {
         combinedPath = `.\\Chef\\QG\\EFF\\${chef}${option1}\\QG_${folder1}\\QG_${folder2}`;
@@ -183,8 +184,34 @@ function inputEff() {
         combinedPath = `.\\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}`;
     }
 
-    console.log('combinedPath:', combinedPath);
+    // Nilai default untuk kolom ke-3
+    const defaultColumn3 = 0;
 
-    // Rest of your code...
+    // Pastikan tabel sudah ada di dalam #tableContainer
+    const tableContainer = document.getElementById("tableContainer");
+    if (tableContainer) {
+        let table = tableContainer.querySelector("table");
+
+        // Jika tabel belum ada, buat tabel baru
+        if (!table) {
+            table = document.createElement("table");
+            tableContainer.appendChild(table);
+
+            // Buat header kolom untuk tabel
+            const headerRow = table.insertRow();
+            headerRow.insertCell(0).innerText = "EFF No.";
+            headerRow.insertCell(1).innerText = "Path";
+            headerRow.insertCell(2).innerText = "Value";
+        }
+
+        // Tambahkan baris baru di akhir tabel
+        const newRow = table.insertRow(-1);
+        newRow.insertCell(0).innerText = effNo;
+        newRow.insertCell(1).innerText = combinedPath;
+        newRow.insertCell(2).innerText = defaultColumn3;
+    } else {
+        alert("Table container not found. Please ensure a table is displayed.");
+    }
 }
+
 
