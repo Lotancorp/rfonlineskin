@@ -1,0 +1,255 @@
+/* CSS untuk halaman Effect File Viewer */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background-color: #ffffff;
+    padding-top: 20px;
+}
+
+.toolbar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 1000;
+}
+
+.import-button {
+    padding: 8px 16px;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-button {
+    padding: 8px 16px;
+    background-color: #1565C0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+}
+
+.table-container {
+    margin-top: 70px;
+    width: 80%;
+    max-width: 800px;
+    height: 60vh;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #B4D8FC;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Posisi tombol save di bawah tabel */
+.save-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.save-button {
+    padding: 10px 20px;
+    background-color: #1565C0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Styling untuk Add Row dan Add Column buttons */
+#addRowButton, #addColumnButton {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 5px 5px 0 0;
+}
+
+#addRowButton:hover, #addColumnButton:hover {
+    background-color: #45a049;
+}
+
+/* Pastikan setiap elemen tetap, tapi tidak menghalangi tabel */
+.toolbar, .scroll-controls, .edit-switch-container {
+    z-index: 1000;
+}
+
+#buttonContainer {
+    display: flex;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+/* Styling untuk tombol Top dan Down serta Edit Mode Switch */
+.edit-switch-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.scroll-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Jarak antar tombol */
+    margin-bottom: 10px;
+}
+
+.scroll-button {
+    padding: 8px 10px;
+    background-color: #1565C0;
+    width: 70px ;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.scroll-button:hover {
+    background-color: #0D47A1;
+}
+
+/* Styling untuk Edit Mode Switch */
+.edit-switch-label {
+    font-size: 14px;
+    color: #0D47A1;
+    display: flex;
+    align-items: center;
+}
+
+.edit-switch-label input[type="checkbox"] {
+    display: none;
+}
+
+.edit-switch-label .slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-switch-label .slider::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.edit-switch-label input[type="checkbox"]:checked + .slider {
+    background-color: #4CAF50;
+}
+
+.edit-switch-label input[type="checkbox"]:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+.chef-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antar elemen */
+    margin-bottom: 20px; /* Jarak di bawah bar */
+    padding: 10px;
+    background-color: #f0f7ff; /* Warna latar belakang untuk bar */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chef-bar label {
+    font-size: 14px;
+    color: #0D47A1;
+}
+
+.chef-bar select, 
+.chef-bar input[type="text"] {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.chef-bar input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.chef-bar input[type="number"] {
+    padding: 3px 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 50px; /* Atur lebar sesuai kebutuhan */
+}
+#inputEffButton {
+    padding: 10px 20px; /* Ukuran padding di dalam tombol */
+    background-color: #1565C0; /* Warna latar belakang tombol */
+    color: #ffffff; /* Warna teks pada tombol */
+    border: none; /* Menghilangkan border */
+    border-radius: 4px; /* Membuat sudut tombol melengkung */
+    cursor: pointer; /* Ubah kursor menjadi pointer saat di-hover */
+    font-size: 14px; /* Ukuran teks */
+    transition: background-color 0.3s; /* Animasi transisi untuk efek hover */
+}
+
+/* Efek hover untuk tombol */
+#inputEffButton:hover {
+    background-color: #0D47A1; /* Warna latar belakang saat di-hover */
+}

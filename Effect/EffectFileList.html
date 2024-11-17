@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EffectFileList Viewer</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <!-- Toolbar di bagian atas untuk tombol Import dan Search -->
+    <div class="toolbar">
+        <input type="file" id="importFile" class="import-button" accept=".txt" onchange="handleFileUpload(event)" />
+        <input type="text" id="searchInput" class="search-input" placeholder="Search..." />
+        <button class="search-button" onclick="searchTable()">Search</button>
+    </div>
+
+
+    
+    <!-- Container untuk tabel -->
+    <div id="tableContainer" class="table-container"></div>
+
+    <!-- Kontainer untuk tombol Add Row dan Add Column -->
+    <div id="buttonContainer" class="button-container">
+        <button id="addRowButton" onclick="addRow()">Add Row</button>
+        <button id="addColumnButton" onclick="addColumn()">Add Column</button>
+    </div>
+    <!-- Kontainer untuk Chef Bar -->
+    <div class="chef-bar">
+        <label for="numEff">EFF No.:</label>
+        <input type="number" id="numEff" placeholder="Enter Number">
+        
+        <label for="chefDropdown1">Chef:</label>
+        <select id="chefDropdown1">
+            <option value="CUSTOM_">CUSTOM_</option>
+            <option value="ORIGIN_">ORIGIN_</option>
+        </select>
+        
+        <select id="chefDropdown2">
+            <option value="ARMOR">ARMOR</option>
+            <option value="GLOVES">GLOVES</option>
+            <option value="JETPACK">JETPACK</option>
+            <option value="MASK">MASK</option>
+            <option value="NPC">NPC</option>
+            <option value="SETUP">SETUP</option>
+            <option value="SHIELD">SHIELD</option>
+            <option value="SIEGE">SIEGE</option>
+            <option value="UNIT">UNIT</option>
+            <option value="WEAPON">WEAPON</option>
+            <option value="WINDWEAPON">WINDWEAPON</option>
+        </select>
+        
+        <input type="text" id="textbox1" placeholder="Folder 1">
+        <input type="text" id="textbox2" placeholder="Folder 2">
+        
+        <label for="qgCheckbox">
+            <input type="checkbox" id="qgCheckbox"> QG
+        </label>
+        
+        <button id="inputEffButton" onclick="inputEff()">INPUT EFF</button>
+    </div>
+
+
+    <!-- Tombol Save di bawah tabel -->
+    <div class="save-container">
+        <button class="save-button" onclick="saveData()">Save</button>
+    </div>
+
+    <!-- Switch untuk Edit Mode dan Tombol Scroll di kanan bawah -->
+    <div class="edit-switch-container">
+        <div class="scroll-controls">
+            <button class="scroll-button" onclick="scrollToTop()">Top</button>
+            <button class="scroll-button" onclick="scrollToBottom()">Down</button>
+        </div>
+        <label class="edit-switch-label">
+            <input type="checkbox" id="editSwitch" onchange="toggleEditMode()" alt="Edit Mode" />
+            <span class="slider"></span> Edit Mode
+        </label>
+    </div>
+
+    <!-- Menyisipkan file JavaScript -->
+    <script src="effectScript.js"></script>
+</body>
+</html>
