@@ -153,7 +153,6 @@ document.querySelector('.chef-bar').addEventListener('keypress', function(event)
         inputEff(); // Panggil fungsi inputEff
     }
 });
-
 function inputEff() {
     // Periksa apakah file yang diimpor adalah "EffectFileList.txt"
     const importedFile = document.getElementById('importFile').files[0];
@@ -213,5 +212,3 @@ function inputEff() {
         alert("Table container not found. Please ensure a table is displayed.");
     }
 }
-
-
