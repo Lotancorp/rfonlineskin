@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quartz Gallery App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Panel Kiri (Sidebar) -->
+    <aside class="sidebar">
+        <div class="logo" id="homeLink">Quartz Gallery</div>
+        <nav class="menu">
+            <a href="#portofolio" id="portofolioLink">Portfolio</a>
+            <a href="#" id="applicationLink">Application</a>
+            <a href="#" id="databaseLink">Database</a> <!-- Menu Database Baru -->
+            <a href="#">Settings</a>
+        </nav>
+    </aside>
+    
+    <!-- Main Panel -->
+    <main class="main-content">
+        <!-- Top Panel (Header) -->
+        <header class="top-bar">
+            <input type="text" placeholder="Search...">
+            <div class="menu-items">
+                <button class="notification" id="notificationBell">🔔</button>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <p>Total Visitors: <span id="visitorCount">Loading...</span></p>
+                </div>
+                <button class="profile">👤</button>
+            </div>
+        </header>
+
+        <!-- Main Content (Dashboard) -->
+        <section class="dashboard-content">
+            <h1>Dashboard</h1>
+                <!-- Image Slider -->
+                <div class="slider">
+                    <div class="slider-wrapper">
+                        <div class="slide">
+                            <img src="C:\RFO\5. PROJECT CODE\PROJECT 1\Banner1.png" alt="Image 1">
+                        </div>
+                        <div class="slide">
+                            <img src="C:\RFO\5. PROJECT CODE\PROJECT 1\Banner2.png" alt="Image 2">
+                        </div>
+                        <div class="slide">
+                            <img src="C:\RFO\5. PROJECT CODE\PROJECT 1\Banner3.png" alt="Image 3">
+                        </div>
+                    </div>
+                    <!-- Navigation Buttons -->
+                    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+                </div>
+                <div id="cardsContainer" class="cards">
+                    <!-- YouTube Channel Card -->
+                    <div class="card" onclick="window.open('https://www.youtube.com/channel/UCqCyP8NIWNl4xjoEmcRSfag', '_blank')">
+                        <div class="icon-sprite icon-youtube" aria-label="YouTube Logo"></div>
+                        <h2>YouTube Channel</h2>
+                        <p>Visit our YouTube Channel</p>
+                    </div>
+                
+                    <!-- Visitors by Browser Card -->
+                    <div class="card">
+                        <div class="icon-sprite icon-visitor" aria-label="Visitor Logo"></div>
+                        <h2>Visitors Information</h2>
+                        <p>Visitor data here</p>
+                    </div>
+                                    
+                    <!-- Visitors by Particle Information -->
+                    <div class="card">
+                        <div class="icon-sprite icon-particle" aria-label="Particle Logo"></div>
+                        <h2>Particle Information</h2>
+                        <p>Particle data here</p>
+                    </div>
+                </div>
+
+            <!-- Placeholder for portfolio -->
+            <div id="portfolioPlaceholder" class="portfolio-container" style="display: none;">
+                <p>Please visit the full portfolio at <a href="https://linktr.ee/quartzgallery22" target="_blank">this link</a></p>
+
+                <!-- Portfolio Cards with links -->
+                <div class="portfolio-grid">
+                    <a href="https://www.flickr.com/photos/197513634@N03/sets/72177720305528974/" target="_blank" class="portfolio-card">
+                        <div class="icon-sprite icon-armor" alt="Armor Skin"></div>
+                        <p>Armor Skin</p>
+                    </a>
+                    <a href="https://www.flickr.com/photos/197513634@N03/sets/72177720305522927/" target="_blank" class="portfolio-card">
+                        <div class="icon-sprite icon-weapon" alt="Weapon Skin"></div>
+                        <p>Weapon Skin</p>
+                    </a>
+                    <a href="https://www.flickr.com/photos/197513634@N03/sets/72177720305515926/" target="_blank" class="portfolio-card">
+                        <div class="icon-sprite icon-booster" alt="Booster Skin"></div>
+                        <p>Booster Skin</p>
+                    </a>
+                    <a href="https://www.flickr.com/photos/197513634@N03/sets/72177720305516620/" target="_blank" class="portfolio-card">
+                        <div class="icon-sprite icon-shield" alt="Shield Skin"></div>
+                        <p>Shield Skin</p>
+                    </a>
+                    <a href="https://www.flickr.com/photos/197513634@N03/sets/72177720305535603/" target="_blank" class="portfolio-card">
+                        <div class="icon-sprite icon-monster" alt="Monster Skin"></div>
+                        <p>Monster Skin</p>
+                    </a>
+                    <a href="https://www.flickr.com/photos/197513634@N03/sets/72177720305516840/" target="_blank" class="portfolio-card">
+                        <div class="icon-sprite icon-others" alt="Others Skin"></div>
+                        <p>Others Skin</p>
+                    </a>
+                </div>
+            </div>
+            <!-- Placeholder for Application -->
+            <div id="applicationPlaceholder" class="application-container" style="display: none;">
+                <h2>Application Files</h2>
+                <div class="application-grid">
+                    <div class="application-card" id="effectFileCard">
+                        <h3>Effectfilelist</h3>
+                    </div>
+                    <div class="application-card" id="ItemEffectlistCard">
+                        <h3>ItemEffectlist</h3>
+                    </div>
+                    <div class="application-card" id="SPTCard">
+                        <h3>SPT Editor</h3>
+                    </div>
+                    <div class="application-card" id="partcileiniCard">
+                        <h3>Particle.ini</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Explorer untuk Database -->
+            <div id="databasePlaceholder" class="database-container" style="display: none;">
+                <div class="database-card">
+                    <h3>Database Download</h3>
+                    <div class="database-dropdown">
+                        <label for="fileSelect">Default File:</label>
+                        <select id="fileSelect">
+                            <option value="Effectfilelist.txt">Effectfilelist</option>
+                            <option value="ItemEffectlist.txt">ItemEffectlist</option>
+                            <option value="Patternlist.txt">Patternlist</option>
+                            <option value="Particle.ini">Particle</option>
+                            <option value="Chef.zip">Chef</option> <!-- Opsi baru untuk Chef.zip -->
+                        </select>
+                        <button id="downloadButton">Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
