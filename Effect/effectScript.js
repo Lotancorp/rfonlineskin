@@ -212,3 +212,66 @@ function inputEff() {
         alert("Table container not found. Please ensure a table is displayed.");
     }
 }
+
+const loadButton = document.getElementById('loadEffects');
+const saveButton = document.getElementById('saveEffects');
+const inputButton = document.getElementById('inputEffects');
+const effectListDiv = document.getElementById('effectList');
+
+let effects = [];
+
+loadButton.addEventListener('click', () => {
+    fetch('https://raw.githubusercontent.com/Lotancorp/rfonlineskin/main/Effect/effect.txt')
+        .then(response => response.text())
+        .then(data => {
+            effects = data.split('\n');
+            renderEffects();
+        });
+});
+
+saveButton.addEventListener('click', () => {
+    const blob = new Blob([effects.join('\n')], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'effect.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+});
+
+inputButton.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.txt';
+    input.style.display = 'none'; // Sembunyikan elemen input
+    document.body.appendChild(input); // Tambahkan ke DOM
+    input.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+            effects = e.target.result.split('\n');
+            renderEffects();
+            document.body.removeChild(input); // Hapus elemen input setelah selesai
+        };
+        reader.readAsText(file);
+    });
+    input.click();
+});
+
+function renderEffects() {
+    effectListDiv.innerHTML = '';
+    effects.forEach((effect, index) => {
+        const div = document.createElement('div');
+        div.className = 'effect-item';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = effect;
+        input.onchange = e => {
+            effects[index] = e.target.value;
+        };
+        div.appendChild(input);
+        effectListDiv.appendChild(div);
+    });
+}
+
