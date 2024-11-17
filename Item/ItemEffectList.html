@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ItemEffectList Viewer</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+
+    <!-- Toolbar di bagian atas untuk tombol Import dan Search -->
+    <div class="toolbar">
+        <input type="file" id="importFile" class="import-button" accept=".txt" onchange="handleFileUpload(event)" />
+        <input type="text" id="searchInput" class="search-input" placeholder="Search..." />
+        <button class="search-button" onclick="searchTable()">Search</button>
+    </div>
+
+
+    
+    <!-- Container untuk tabel -->
+    <div id="tableContainer" class="table-container"></div>
+
+    <!-- Kontainer untuk tombol Add Row dan Add Column -->
+    <div id="buttonContainer" class="button-container">
+        <button id="addRowButton" onclick="addRow()">Add Row</button>
+ 
+    </div>
+        
+    <!-- Baris 1: Race dan Type Skin -->
+    <div class="input-row">
+        <label for="race">Race:</label>
+        <input type="checkbox" id="accretiaCheckbox" value="Accretia"> Accretia
+        <input type="checkbox" id="bellatoCheckbox" value="Bellato"> Bellato
+        <input type="checkbox" id="coraCheckbox" value="Cora"> Cora
+
+        <label for="skinTypeDropdown">Type Skin:</label>
+        <select id="skinTypeDropdown">
+            <option value="BOOSTER">BOOSTER</option>
+            <option value="MASK">MASK</option>
+            <option value="GLOVES">GLOVES</option>
+            <option value="ARMOR">ARMOR</option>
+        </select>
+
+        <label for="jumlahSet">Jumlah Set:</label>
+        <select id="jumlahSet">
+            <option value="1">1 Set</option>
+            <option value="2">2 Set</option>
+            <option value="3">3 Set</option>
+        </select>
+    </div>
+        <!-- Baris 2: MeshID dan EFF -->
+        <div class="input-row">
+            <div class="mesh-eff-group">
+                <!-- Kelompok MeshID -->
+                <div class="mesh-group">
+                    <label for="meshID">MeshID:</label>
+                    <input type="text" id="meshID1" placeholder="MeshID-1">
+                    <input type="text" id="meshID2" placeholder="MeshID-2">
+                    <input type="text" id="meshID3" placeholder="MeshID-3">
+                </div>
+                
+                <!-- Kelompok EFF -->
+                <div class="eff-group">
+                    <label for="eff">EFF:</label>
+                    <input type="text" id="eff1" placeholder="EFF-1">
+                    <input type="text" id="eff2" placeholder="EFF-2">
+                    <input type="text" id="eff3" placeholder="EFF-3">
+                </div>
+            </div>
+        </div>
+
+                <!-- Baris 3: Tombol Input Item Effect -->
+        <div class="input-row">
+            <button id="inputItemEffectButton" onclick="inputItemEffect()">Input Item Effect</button>
+        </div>
+    </div>
+    <!-- Tombol Save di bawah tabel -->
+    <div class="save-container">
+        <button class="save-button" onclick="saveData()">Save</button>
+    </div>
+
+    <!-- Switch untuk Edit Mode dan Tombol Scroll di kanan bawah -->
+    <div class="edit-switch-container">
+        <div class="scroll-controls">
+            <button class="scroll-button" onclick="scrollToTop()">Top</button>
+            <button class="scroll-button" onclick="scrollToBottom()">Down</button>
+        </div>
+        <label class="edit-switch-label">
+            <input type="checkbox" id="editSwitch" onchange="toggleEditMode()" alt="Edit Mode" />
+            <span class="slider"></span> Edit Mode
+        </label>
+    </div>
+
+    <!-- Menyisipkan file JavaScript -->
+    <script src="itemscript.js"></script>
+</body>
+</html>
