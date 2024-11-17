@@ -168,9 +168,9 @@ function inputEff() {
     // Construct the combined path
     let combinedPath;
     if (isQGChecked) {
-        combinedPath = `.\Chef\\QG\\EFF\\${chef}${option1}\\QG_${folder1}\\QG_${folder2}`;
+        combinedPath = `.\Chef\\QG\\EFF\\${chef}${option1}\\QG_${folder1}\\QG_${folder2}.EFF`;
     } else {
-        combinedPath = `.\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}`;
+        combinedPath = `.\Chef\\EFF\\${chef}${option1}\\${folder1}\\${folder2}.EFF`;
     }
 
     // Default value for the third column
