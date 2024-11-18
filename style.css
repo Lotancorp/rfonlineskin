@@ -512,7 +512,7 @@ body {
 .profile-links a {
     display: block;
     color: #333;
-    text-decoration: none;
+    text-align: center; /* Teks di tengah */
     margin-bottom: 5px;
 }
 
