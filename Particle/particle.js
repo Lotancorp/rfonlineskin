@@ -161,17 +161,16 @@ function toggleEditMode() {
     });
 }
 
-// Fungsi untuk menyimpan file sebagai .txt saat ini
 function saveData() {
     const rows = [];
     const tableRows = document.querySelectorAll("#tableContainer tr");
 
-    tableRows.forEach((row, index) => {
+    tableRows.forEach((row) => {
         const rowData = [];
-        const cells = row.querySelectorAll(index === 0 ? "th" : "td");
+        const cells = row.querySelectorAll("th, td"); // Ambil <th> atau <td>
         
         cells.forEach(cell => {
-            rowData.push(cell.innerText);
+            rowData.push(cell.innerText.trim()); // Trim untuk membersihkan spasi tambahan
         });
         
         rows.push(rowData.join("\t"));
@@ -184,6 +183,7 @@ function saveData() {
     link.download = "Particle.ini"; // Nama file yang diinginkan
     link.click();
 }
+
 
 // Fungsi untuk menambahkan kolom baru
 function addColumn() {
@@ -426,9 +426,16 @@ function insertDataFromEditorModal() {
 // Fungsi pemrosesan data
 function processNumbers(largeInput, smallInput) {
     const startingNumber = parseInt(smallInput, 10);
+    const newLinePath = document.getElementById('newLineModal').value.trim();
+    const changeLog = [];
 
     if (isNaN(startingNumber)) {
         alert("Please enter a valid number in the 'Nomor awal' field.");
+        return '';
+    }
+
+    if (!newLinePath) {
+        alert("Please provide a new line path in the 'New Line' field.");
         return '';
     }
 
@@ -442,20 +449,34 @@ function processNumbers(largeInput, smallInput) {
 
         // Replace [PARTICLE****]
         if (line.match(/^\[PARTICLE\d+\]/)) {
+            const oldNumber = line.match(/\d+/)[0];
             line = line.replace(/\[PARTICLE\d+\]/, `[PARTICLE${currentNumber}]`);
+            changeLog.push(`Change ${oldNumber} to ${currentNumber}`);
         }
 
         // Replace INDEX =****
         else if (line.match(/^INDEX\s*=\s*\d+/)) {
+            const oldIndex = line.match(/\d+/)[0];
             line = line.replace(/INDEX\s*=\s*\d+/, `INDEX =${currentNumber}`);
+            changeLog.push(`Change ${oldIndex} to ${currentNumber}`);
             currentNumber++; // Increment after processing INDEX line
+        }
+
+        // Replace PARTICLE path
+        else if (line.startsWith("PARTICLE=")) {
+            line = `PARTICLE=${newLinePath}\\${line.split('\\').pop()}`; // Replace path but keep file name
         }
 
         outputLines.push(line);
     }
 
+    // Update log box with changes
+    document.getElementById('logBoxModal').value = changeLog.join('\n');
+
     return outputLines.join('\n');
 }
+
+
 
 // Fungsi untuk memasukkan data ke tabel utama
 function insertDataFromEditor(outputData) {
