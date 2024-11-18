@@ -512,18 +512,21 @@ body {
     text-align: center; /* Teks di tengah */
 }
 
-.profile-links {
-    text-align: center; /* Teks di tengah */
+.profile-links a {
+    display: flex; /* Mengatur tautan dan ikon dalam satu baris */
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Jarak antara ikon dan teks */
+    font-size: 14px; /* Ukuran font */
+    color: #333; /* Warna teks */
+    text-decoration: none; /* Menghilangkan garis bawah */
 }
 
-.profile-links a {
-    display: inline-block; /* Mengubah elemen menjadi blok untuk lebih fleksibel */
-    margin: 5px 0; /* Memberi jarak vertikal antar tautan */
-    color: #333; /* Warna teks */
-    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+.profile-links a i {
+    font-size: 16px; /* Ukuran ikon */
 }
 
 .profile-links a:hover {
-    text-decoration: underline; /* Menambahkan garis bawah saat hover */
+    color: #007bff; /* Warna saat hover */
 }
 
