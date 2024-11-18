@@ -542,4 +542,25 @@ body {
     left: -5px;
 }
 
+/* Gaya untuk sidebar (form feedback) */
+.sidebar {
+    display: none; /* Sembunyikan secara default */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Transisi untuk sidebar */
+.sidebar.show {
+    display: block;
+    transform: translateX(0);
+}
 
