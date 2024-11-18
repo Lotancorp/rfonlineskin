@@ -508,15 +508,18 @@ body {
     margin-bottom: 10px;
 }
 
-/* Gaya untuk tautan media sosial */
-.profile-links a {
-    display: block;
-    color: #333;
+.profile-links {
     text-align: center; /* Teks di tengah */
-    margin-bottom: 5px;
+}
+
+.profile-links a {
+    display: inline-block; /* Mengubah elemen menjadi blok untuk lebih fleksibel */
+    margin: 5px 0; /* Memberi jarak vertikal antar tautan */
+    color: #333; /* Warna teks */
+    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
 }
 
 .profile-links a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Menambahkan garis bawah saat hover */
 }
 
