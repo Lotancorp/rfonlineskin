@@ -85,28 +85,29 @@
                         <p>Klik untuk memberikan feedback</p>
                     </div>
                     
-                    <!-- Form Feedback -->
-                    <div id="feedbackForm" class="sidebar">
-                        <h2>Feedback Form</h2>
-                        <form id="visitorFeedbackForm">
-                            <label for="name">Nama:</label>
-                            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+                    <!-- Feedback Form (Modal) -->
+                    <div id="feedbackModal" class="modal">
+                        <div class="modal-content">
+                            <span id="closeModal" class="close">&times;</span>
+                            <h2>Feedback Form</h2>
+                            <form id="visitorFeedbackForm">
+                                <label for="name">Nama:</label>
+                                <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
                     
-                            <label for="phone">Nomor Telepon:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Masukkan nomor telepon Anda">
+                                <label for="phone">Nomor Telepon:</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Masukkan nomor telepon Anda">
                     
-                            <label for="social">Media Sosial:</label>
-                            <input type="text" id="social" name="social" placeholder="Masukkan media sosial Anda">
+                                <label for="social">Media Sosial:</label>
+                                <input type="text" id="social" name="social" placeholder="Masukkan media sosial Anda">
                     
-                            <label for="message">Pesan / Komentar:</label>
-                            <textarea id="message" name="message" placeholder="Masukkan pesan Anda" required></textarea>
+                                <label for="message">Pesan / Komentar:</label>
+                                <textarea id="message" name="message" placeholder="Masukkan pesan Anda" required></textarea>
                     
-                            <button type="submit">Kirim</button>
-                            <button type="button" id="closeForm">Tutup</button>
-                        </form>
+                                <button type="submit">Kirim</button>
+                            </form>
+                        </div>
                     </div>
-
-                                    
+                                                        
                     <!-- Particle Information -->
                     <div class="card">
                         <div class="icon-sprite icon-particle" aria-label="Particle Logo"></div>
