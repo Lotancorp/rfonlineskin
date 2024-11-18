@@ -550,11 +550,11 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
-    overflow: auto; /* Scroll jika konten terlalu panjang */
+    background-color: rgba(0, 0, 0, 0.5); /* Background semi-transparan */
+    overflow: auto;
     display: flex;
     justify-content: center;
-    align-items: center; /* Pusatkan modal di tengah */
+    align-items: center; /* Pusatkan modal */
 }
 
 /* Konten Modal */
@@ -562,14 +562,14 @@ body {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
-    width: 90%; /* Responsif, lebar maksimal */
-    max-width: 400px; /* Batas maksimal lebar */
+    width: 90%;
+    max-width: 400px; /* Batas lebar maksimum */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-family: Arial, sans-serif;
-    animation: fadeIn 0.3s ease-in-out; /* Efek animasi saat muncul */
+    animation: fadeIn 0.3s ease-in-out; /* Efek animasi */
 }
 
-/* Animasi Modal */
+/* Efek animasi */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -584,7 +584,7 @@ body {
 /* Tombol Close */
 .close {
     float: right;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #333;
     cursor: pointer;
@@ -592,14 +592,14 @@ body {
 }
 
 .close:hover {
-    color: #ff0000; /* Warna merah saat hover */
+    color: #ff0000;
 }
 
-/* Form Label */
+/* Label Form */
 .modal-content label {
     display: block;
-    margin: 10px 0 5px;
     font-weight: bold;
+    margin: 10px 0 5px;
     color: #333;
 }
 
@@ -618,7 +618,7 @@ body {
 
 .modal-content input:focus,
 .modal-content textarea:focus {
-    border-color: #007bff; /* Warna biru saat fokus */
+    border-color: #007bff;
     outline: none;
 }
 
@@ -629,14 +629,18 @@ body {
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff; /* Warna biru */
+    background-color: #007bff;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .modal-content button:hover {
-    background-color: #0056b3; /* Biru lebih gelap saat hover */
+    background-color: #0056b3;
 }
-
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* Lebar lebih kecil untuk perangkat kecil */
+    }
+}
 
