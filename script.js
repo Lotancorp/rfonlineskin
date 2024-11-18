@@ -143,3 +143,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const visitorCard = document.getElementById('visitorCard');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const closeFormButton = document.getElementById('closeForm');
+
+    // Tampilkan form feedback saat card diklik
+    visitorCard.addEventListener('click', function () {
+        feedbackForm.classList.add('show'); // Tambahkan kelas 'show' untuk memunculkan form
+    });
+
+    // Tutup form saat tombol "Tutup" diklik
+    closeFormButton.addEventListener('click', function () {
+        feedbackForm.classList.remove('show'); // Hapus kelas 'show' untuk menyembunyikan form
+    });
+
+    // Fungsi untuk menangani pengiriman form
+    const feedbackFormElement = document.getElementById('visitorFeedbackForm');
+    feedbackFormElement.addEventListener('submit', function (e) {
+        e.preventDefault(); // Mencegah pengiriman form secara default
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const social = document.getElementById('social').value;
+        const message = document.getElementById('message').value;
+
+        console.log('Feedback Diterima:', { name, phone, social, message });
+
+        alert('Terima kasih atas feedback Anda!');
+        feedbackForm.classList.remove('show'); // Tutup form setelah submit
+        feedbackFormElement.reset(); // Reset input form
+    });
+});
