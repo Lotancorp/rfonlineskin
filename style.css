@@ -515,7 +515,6 @@ body {
 .profile-links a {
     display: flex; /* Mengatur tautan dan ikon dalam satu baris */
     align-items: center;
-    justify-content: center;
     gap: 5px; /* Jarak antara ikon dan teks */
     font-size: 14px; /* Ukuran font */
     color: #333; /* Warna teks */
