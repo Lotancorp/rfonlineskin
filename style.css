@@ -508,6 +508,10 @@ body {
     margin-bottom: 10px;
 }
 
+.profile-quote {
+    text-align: center; /* Teks di tengah */
+}
+
 .profile-links {
     text-align: center; /* Teks di tengah */
 }
