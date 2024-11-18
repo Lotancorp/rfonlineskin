@@ -194,7 +194,7 @@ body {
 .icon-sprite {
     width: 100px; /* Ukuran icon yang lebih kecil */
     height: 100px;
-    background-image: url('https://raw.githubusercontent.com/Lotancorp/rfonlineskin/refs/heads/main/icongrid.png');
+    background-image: url('images//icongrid.png');
     background-size: 1080px 1080px;
     background-repeat: no-repeat;
     margin-bottom: 10px; /* Spasi antara icon dan teks */
