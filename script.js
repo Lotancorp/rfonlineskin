@@ -145,20 +145,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const visitorCard = document.getElementById('visitorCard');
-    const feedbackForm = document.getElementById('feedbackForm');
-    const closeFormButton = document.getElementById('closeForm');
+    const feedbackModal = document.getElementById('feedbackModal');
+    const closeModal = document.getElementById('closeModal');
 
-    // Tampilkan form feedback saat card diklik
+    // Tampilkan modal saat card diklik
     visitorCard.addEventListener('click', function () {
-        feedbackForm.classList.add('show'); // Tambahkan kelas 'show' untuk memunculkan form
+        feedbackModal.style.display = 'block';
     });
 
-    // Tutup form saat tombol "Tutup" diklik
-    closeFormButton.addEventListener('click', function () {
-        feedbackForm.classList.remove('show'); // Hapus kelas 'show' untuk menyembunyikan form
+    // Tutup modal saat tombol "close" diklik
+    closeModal.addEventListener('click', function () {
+        feedbackModal.style.display = 'none';
     });
 
-    // Fungsi untuk menangani pengiriman form
+    // Tutup modal saat pengguna mengklik di luar modal
+    window.addEventListener('click', function (event) {
+        if (event.target === feedbackModal) {
+            feedbackModal.style.display = 'none';
+        }
+    });
+
+    // Tangani pengiriman form
     const feedbackFormElement = document.getElementById('visitorFeedbackForm');
     feedbackFormElement.addEventListener('submit', function (e) {
         e.preventDefault(); // Mencegah pengiriman form secara default
@@ -171,7 +178,8 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Feedback Diterima:', { name, phone, social, message });
 
         alert('Terima kasih atas feedback Anda!');
-        feedbackForm.classList.remove('show'); // Tutup form setelah submit
+        feedbackModal.style.display = 'none'; // Tutup modal setelah submit
         feedbackFormElement.reset(); // Reset input form
     });
 });
+
