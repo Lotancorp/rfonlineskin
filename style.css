@@ -541,42 +541,102 @@ body {
     top: -10px;
     left: -5px;
 }
-/* Gaya untuk modal */
+/* Modal Background */
 .modal {
     display: none; /* Sembunyikan secara default */
     position: fixed;
-    z-index: 1000; /* Pastikan di atas elemen lainnya */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Tambahkan scroll jika konten terlalu besar */
-    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
+    overflow: auto; /* Scroll jika konten terlalu panjang */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Pusatkan modal di tengah */
 }
 
-/* Gaya konten modal */
+/* Konten Modal */
 .modal-content {
-    background-color: #fff;
-    margin: 15% auto; /* Pusatkan modal */
-    padding: 20px;
+    background-color: #ffffff;
     border-radius: 10px;
-    width: 50%; /* Ukuran lebar modal */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 90%; /* Responsif, lebar maksimal */
+    max-width: 400px; /* Batas maksimal lebar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    animation: fadeIn 0.3s ease-in-out; /* Efek animasi saat muncul */
 }
 
-/* Tombol close */
+/* Animasi Modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Tombol Close */
 .close {
-    color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
+    color: #333;
     cursor: pointer;
+    transition: color 0.3s;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.close:hover {
+    color: #ff0000; /* Warna merah saat hover */
+}
+
+/* Form Label */
+.modal-content label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input dan Textarea */
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: #007bff; /* Warna biru saat fokus */
+    outline: none;
+}
+
+/* Tombol Submit */
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Warna biru */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3; /* Biru lebih gelap saat hover */
 }
 
 
