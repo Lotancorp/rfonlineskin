@@ -127,11 +127,15 @@ document.addEventListener('DOMContentLoaded', function() {
         profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
     });
 
-    // Sembunyikan dropdown saat klik di luar dropdown
-    document.addEventListener('click', function(event) {
-        if (!profileDropdown.contains(event.target) && event.target !== profileButton) {
-            profileDropdown.style.display = 'none';
-        }
+    // Sembunyikan dropdown saat mengklik di luar dropdown
+    document.addEventListener('click', function() {
+        profileDropdown.style.display = 'none';
+    });
+
+    // Mencegah penutupan dropdown saat mengklik di dalam dropdown
+    profileDropdown.addEventListener('click', function(event) {
+        event.stopPropagation();
     });
 });
+
 
