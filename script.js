@@ -117,4 +117,21 @@ document.getElementById("downloadButton").addEventListener("click", function() {
     link.click();
     document.body.removeChild(link);
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const profileButton = document.getElementById('profileButton');
+    const profileDropdown = document.getElementById('profileDropdown');
+
+    // Tampilkan atau sembunyikan dropdown saat tombol profil diklik
+    profileButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Sembunyikan dropdown saat klik di luar dropdown
+    document.addEventListener('click', function(event) {
+        if (!profileDropdown.contains(event.target) && event.target !== profileButton) {
+            profileDropdown.style.display = 'none';
+        }
+    });
+});
 
