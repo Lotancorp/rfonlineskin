@@ -84,36 +84,27 @@ window.addEventListener("click", (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const visitorCountElement = document.getElementById('visitorCount');
-    const visitorCountBadge = document.getElementById('visitorCountBadge');
+    const visitorCountElement = document.getElementById('visitorCount'); // Elemen untuk menampilkan jumlah visitor
 
-    // Simulasi data jumlah pengunjung (bisa diganti dengan data dari server)
-    let visitorCount = 125; // Contoh data jumlah pengunjung
-
-    // Fungsi untuk memperbarui jumlah pengunjung
-    function updateVisitorCount() {
-        visitorCountElement.textContent = visitorCount; // Tampilkan jumlah pengunjung di dropdown
-        visitorCountBadge.textContent = visitorCount;  // Tampilkan jumlah pengunjung di badge
+    // Fungsi untuk mengambil data real-time pengguna aktif
+    async function fetchActiveUsers() {
+        try {
+            // Simulasi jumlah pengguna aktif
+            const activeUsers = Math.floor(Math.random() * 10) + 1; // Simulasi angka 1-10
+            visitorCountElement.textContent = activeUsers; // Tampilkan di elemen HTML
+        } catch (error) {
+            console.error("Error fetching active users:", error);
+        }
     }
 
     // Jalankan fungsi saat halaman dimuat
-    updateVisitorCount();
+    fetchActiveUsers();
 
-    // Event listener untuk menampilkan/menyembunyikan dropdown saat lonceng diklik
-    const notificationBell = document.getElementById('notificationBell');
-    const notificationDropdown = document.getElementById('notificationDropdown');
-
-    notificationBell.addEventListener('click', function (event) {
-        event.stopPropagation();
-        notificationDropdown.style.display =
-            notificationDropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Sembunyikan dropdown jika pengguna mengklik di luar elemen
-    document.addEventListener('click', function () {
-        notificationDropdown.style.display = 'none';
-    });
+    // Perbarui data setiap 30 detik
+    setInterval(fetchActiveUsers, 30000);
 });
+
+
 
 
 // Fungsi untuk tombol download
@@ -151,25 +142,4 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
     });
 });
-document.addEventListener('DOMContentLoaded', function () {
-    const visitorCountElement = document.getElementById('visitorCount'); // Elemen untuk menampilkan jumlah visitor
-
-    // Fungsi untuk mengambil data real-time pengguna aktif
-    async function fetchActiveUsers() {
-        try {
-            // Simulasi jumlah pengguna aktif
-            const activeUsers = Math.floor(Math.random() * 10) + 1; // Simulasi angka 1-10
-            visitorCountElement.textContent = activeUsers; // Tampilkan di elemen HTML
-        } catch (error) {
-            console.error("Error fetching active users:", error);
-        }
-    }
-
-    // Jalankan fungsi saat halaman dimuat
-    fetchActiveUsers();
-
-    // Perbarui data setiap 30 detik
-    setInterval(fetchActiveUsers, 30000);
-});
-
 
