@@ -483,21 +483,23 @@ body {
 /* Gaya untuk header profil */
 .profile-header {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    align-items: center; /* Align elemen secara vertikal ke tengah */
+    justify-content: center; /* Align elemen secara horizontal ke tengah */
+    flex-direction: column; /* Mengatur elemen menjadi satu kolom (dari atas ke bawah) */
+    margin-bottom: 10px; /* Jarak dengan elemen di bawah */
+    text-align: center; /* Teks di tengah */
 }
 
-/* Gaya untuk logo profil */
 .profile-logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
+    width: 50px; /* Ukuran logo */
+    height: 50px; /* Ukuran logo */
+    border-radius: 50%; /* Membuat logo berbentuk lingkaran */
+    margin-bottom: 5px; /* Memberi jarak antara logo dan teks */
 }
 
-/* Gaya untuk nama profil */
 .profile-name {
     font-weight: bold;
+    font-size: 16px; /* Ukuran teks untuk nama */
 }
 
 /* Gaya untuk kutipan profil */
