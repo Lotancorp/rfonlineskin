@@ -469,15 +469,16 @@ body {
 .profile-dropdown {
     display: none;
     position: absolute;
-    right: 0;
-    top: 100%;
+    right: 0; /* Posisi dropdown tepat di ujung kanan */
+    top: 50px; /* Jarak vertikal dari tombol profil */
     background-color: #fff;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 1;
-    width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
+    width: 250px; /* Lebar dropdown */
     padding: 10px;
     border-radius: 5px;
 }
+
 
 /* Gaya untuk header profil */
 .profile-header {
