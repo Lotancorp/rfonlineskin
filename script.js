@@ -83,24 +83,38 @@ window.addEventListener("click", (event) => {
     }
 });
 
-// CountAPI untuk visitor count
-const namespace = "your-unique-namespace"; // Ganti dengan namespace Anda
-const key = "quartz-gallery-visitor"; 
+document.addEventListener('DOMContentLoaded', function () {
+    const visitorCountElement = document.getElementById('visitorCount');
+    const visitorCountBadge = document.getElementById('visitorCountBadge');
 
-function updateVisitorCount() {
-    const url = `https://api.countapi.xyz/hit/${namespace}/${key}`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("visitorCount").textContent = data.value;
-        })
-        .catch(error => {
-            console.error("Error fetching visitor count:", error);
-            document.getElementById("visitorCount").textContent = "Error";
-        });
-}
+    // Simulasi data jumlah pengunjung (bisa diganti dengan data dari server)
+    let visitorCount = 125; // Contoh data jumlah pengunjung
 
-updateVisitorCount(); // Perbarui visitor count saat halaman dimuat
+    // Fungsi untuk memperbarui jumlah pengunjung
+    function updateVisitorCount() {
+        visitorCountElement.textContent = visitorCount; // Tampilkan jumlah pengunjung di dropdown
+        visitorCountBadge.textContent = visitorCount;  // Tampilkan jumlah pengunjung di badge
+    }
+
+    // Jalankan fungsi saat halaman dimuat
+    updateVisitorCount();
+
+    // Event listener untuk menampilkan/menyembunyikan dropdown saat lonceng diklik
+    const notificationBell = document.getElementById('notificationBell');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+
+    notificationBell.addEventListener('click', function (event) {
+        event.stopPropagation();
+        notificationDropdown.style.display =
+            notificationDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Sembunyikan dropdown jika pengguna mengklik di luar elemen
+    document.addEventListener('click', function () {
+        notificationDropdown.style.display = 'none';
+    });
+});
+
 
 // Fungsi untuk tombol download
 document.getElementById("downloadButton").addEventListener("click", function() {
