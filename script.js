@@ -151,5 +151,25 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const visitorCountElement = document.getElementById('visitorCount'); // Elemen untuk menampilkan jumlah visitor
+
+    // Fungsi untuk mengambil data real-time pengguna aktif
+    async function fetchActiveUsers() {
+        try {
+            // Simulasi jumlah pengguna aktif
+            const activeUsers = Math.floor(Math.random() * 10) + 1; // Simulasi angka 1-10
+            visitorCountElement.textContent = activeUsers; // Tampilkan di elemen HTML
+        } catch (error) {
+            console.error("Error fetching active users:", error);
+        }
+    }
+
+    // Jalankan fungsi saat halaman dimuat
+    fetchActiveUsers();
+
+    // Perbarui data setiap 30 detik
+    setInterval(fetchActiveUsers, 30000);
+});
 
 
