@@ -505,7 +505,7 @@ body {
 /* Gaya untuk kutipan profil */
 .profile-quote {
     font-style: italic;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .profile-quote {
@@ -515,7 +515,7 @@ body {
 .profile-links a {
     display: flex; /* Mengatur tautan dan ikon dalam satu baris */
     align-items: center;
-    gap: 5px; /* Jarak antara ikon dan teks */
+    gap: 10px; /* Jarak antara ikon dan teks */
     font-size: 14px; /* Ukuran font */
     color: #333; /* Warna teks */
     text-decoration: none; /* Menghilangkan garis bawah */
