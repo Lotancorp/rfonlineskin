@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <!-- Container untuk Visitor Feedback -->
+                <!-- Visitor Feedback Section -->
                 <div id="visitorFeedbackSection" style="display: none;">
                     <h3>Visitor Feedback</h3>
                     <ul id="feedbackList"></ul>
@@ -200,6 +200,44 @@
 
       gtag('config', 'G-WT5VNP0M7S');
     </script>
-
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+      
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAPL347ULfqJQagxznXrRUnwk1Z7jtNHlo",
+          authDomain: "rfonlineskin.firebaseapp.com",
+          projectId: "rfonlineskin",
+          storageBucket: "rfonlineskin.firebasestorage.app",
+          messagingSenderId: "825230919557",
+          appId: "1:825230919557:web:5d5fb18a2abd5dd96d66ec",
+          measurementId: "G-LRLZ3W5YPD"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+      
+        // Define global functions for Firebase
+        window.saveFeedbackToFirebase = function (name, comment) {
+          const feedbackRef = ref(database, "feedback");
+          push(feedbackRef, { name, comment });
+        };
+      
+        window.loadFeedbackFromFirebase = function (callback) {
+          const feedbackRef = ref(database, "feedback");
+          onValue(feedbackRef, (snapshot) => {
+            const feedback = snapshot.val();
+            const feedbackList = [];
+            for (const id in feedback) {
+              feedbackList.push(feedback[id]);
+            }
+            callback(feedbackList);
+          });
+        };
+      </script>
+      
 </body>
 </html>

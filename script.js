@@ -123,65 +123,57 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const visitorCard = document.getElementById('visitorCard');
-    const feedbackSection = document.getElementById('visitorFeedbackSection');
-    const feedbackList = document.getElementById('feedbackList');
-    const submitBtn = document.getElementById('submitBtn');
-    const nameField = document.getElementById('name');
-    const phoneField = document.getElementById('phone');
-    const socialField = document.getElementById('social');
-    const messageField = document.getElementById('message');
-    const modal = document.getElementById('feedbackModal');
-    const visitorData = []; // Array untuk menyimpan data visitor
+document.addEventListener("DOMContentLoaded", function () {
+    const visitorCard = document.getElementById("visitorCard");
+    const feedbackSection = document.getElementById("visitorFeedbackSection");
+    const feedbackList = document.getElementById("feedbackList");
+    const submitBtn = document.getElementById("submitBtn");
+    const nameField = document.getElementById("name");
+    const messageField = document.getElementById("message");
+    const modal = document.getElementById("feedbackModal");
 
     // Fungsi untuk menutup modal
     function closeModal() {
-        modal.style.display = 'none';
-        nameField.value = '';
-        phoneField.value = '';
-        socialField.value = '';
-        messageField.value = '';
+        modal.style.display = "none";
+        nameField.value = "";
+        messageField.value = "";
     }
 
-    // Fungsi untuk menambahkan feedback ke list
-    function addFeedbackToList(name, comment) {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${name}: ${comment}`;
-        feedbackList.appendChild(listItem);
-    }
-
-    // Event listener untuk tombol Submit
-    submitBtn.addEventListener('click', function (event) {
+    // Menyimpan feedback ke Firebase
+    submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
 
         const name = nameField.value.trim();
-        const phone = phoneField.value.trim();
-        const social = socialField.value.trim();
         const comment = messageField.value.trim();
 
-        if (name === '' || comment === '') {
-            alert('Please fill out the required fields.');
+        if (name === "" || comment === "") {
+            alert("Please fill out the required fields.");
             return;
         }
 
-        // Simpan data ke array
-        visitorData.push({ name, phone, social, comment });
+        // Simpan ke Firebase
+        saveFeedbackToFirebase(name, comment);
 
-        // Tambahkan ke feedback list
-        addFeedbackToList(name, comment);
+        // Bersihkan form
+        closeModal();
+    });
 
-        console.log('Visitor Data:', visitorData); // Debugging
-        closeModal(); // Tutup modal
+    // Muat feedback dari Firebase dan tampilkan di kolom
+    loadFeedbackFromFirebase((feedbackListData) => {
+        feedbackList.innerHTML = ""; // Hapus data lama
+        feedbackListData.forEach((feedback) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${feedback.name}: ${feedback.comment}`;
+            feedbackList.appendChild(listItem);
+        });
     });
 
     // Toggle Feedback Section
-    visitorCard.addEventListener('click', function () {
-        // Toggle display feedback section
-        if (feedbackSection.style.display === 'none' || feedbackSection.style.display === '') {
-            feedbackSection.style.display = 'block'; // Tampilkan feedback
+    visitorCard.addEventListener("click", function () {
+        if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
+            feedbackSection.style.display = "block";
         } else {
-            feedbackSection.style.display = 'none'; // Sembunyikan feedback
+            feedbackSection.style.display = "none";
         }
     });
 });
