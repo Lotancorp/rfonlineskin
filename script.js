@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         listItem.textContent = `${name}: ${comment}`;
         feedbackList.appendChild(listItem);
     }
-
+    
     // Event listener untuk tombol Submit
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
@@ -175,6 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Bersihkan form dan tutup modal
         closeModal();
     });
+    
+
     // Event listener untuk tombol tutup modal
     closeModalBtn.addEventListener("click", closeModal);
 
