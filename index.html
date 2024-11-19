@@ -27,12 +27,17 @@
         const database = getDatabase(app);
 
         // Save feedback to Firebase
-        window.saveFeedbackToFirebase = function (name, comment) {
-            const feedbackRef = ref(database, "feedback");
-            push(feedbackRef, { name, comment })
-                .then(() => console.log("Feedback successfully saved"))
-                .catch((error) => console.error("Error saving feedback:", error));
-        };
+        window.saveFeedbackToFirebase = function (name, phone, social, comment) {
+        const feedbackRef = ref(database, "feedback");
+        push(feedbackRef, { 
+            name, 
+            phone, 
+            social, 
+            comment 
+        })
+        .then(() => console.log("Feedback successfully saved"))
+        .catch((error) => console.error("Error saving feedback:", error));
+    };
 
         // Load feedback from Firebase
         window.loadFeedbackFromFirebase = function (callback) {

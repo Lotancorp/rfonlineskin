@@ -155,25 +155,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener untuk tombol Submit
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
-
+    
         const name = nameField.value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const social = document.getElementById("social").value.trim();
         const comment = messageField.value.trim();
-
+    
         if (name === "" || comment === "") {
-            alert("Please fill out all fields.");
+            alert("Please fill out the required fields.");
             return;
         }
-
+    
         // Simpan feedback ke Firebase
-        saveFeedbackToFirebase(name, comment);
-
-        // Tambahkan ke daftar lokal
+        saveFeedbackToFirebase(name, phone, social, comment);
+    
+        // Tambahkan nama dan komentar saja ke daftar lokal
         addFeedbackToList(name, comment);
-
+    
         // Bersihkan form dan tutup modal
         closeModal();
     });
-
     // Event listener untuk tombol tutup modal
     closeModalBtn.addEventListener("click", closeModal);
 
