@@ -131,53 +131,70 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameField = document.getElementById("name");
     const messageField = document.getElementById("message");
     const modal = document.getElementById("feedbackModal");
-  
+    const closeModalBtn = document.getElementById("closeModal");
+
+    // Fungsi untuk menampilkan modal
+    function openModal() {
+        modal.style.display = "block";
+    }
+
     // Fungsi untuk menutup modal
     function closeModal() {
-      modal.style.display = "none";
-      nameField.value = "";
-      messageField.value = "";
+        modal.style.display = "none";
+        nameField.value = "";
+        messageField.value = "";
     }
-  
-    // Menyimpan feedback ke Firebase
-    submitBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-  
-      const name = nameField.value.trim();
-      const comment = messageField.value.trim();
-  
-      if (name === "" || comment === "") {
-        alert("Harap isi semua kolom.");
-        return;
-      }
-  
-      // Simpan ke Firebase
-      saveFeedbackToFirebase(name, comment);
-  
-      // Bersihkan form
-      closeModal();
-    });
-  
-    // Muat feedback dari Firebase dan tampilkan di kolom
-    loadFeedbackFromFirebase((feedbackListData) => {
-      feedbackList.innerHTML = ""; // Hapus data lama
-      feedbackListData.forEach((feedback) => {
+
+    // Fungsi untuk menambahkan feedback ke daftar
+    function addFeedbackToList(name, comment) {
         const listItem = document.createElement("li");
-        listItem.textContent = `${feedback.name}: ${feedback.comment}`;
+        listItem.textContent = `${name}: ${comment}`;
         feedbackList.appendChild(listItem);
-      });
+    }
+
+    // Event listener untuk tombol Submit
+    submitBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const name = nameField.value.trim();
+        const comment = messageField.value.trim();
+
+        if (name === "" || comment === "") {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        // Simpan feedback ke Firebase
+        saveFeedbackToFirebase(name, comment);
+
+        // Tambahkan ke daftar lokal
+        addFeedbackToList(name, comment);
+
+        // Bersihkan form dan tutup modal
+        closeModal();
     });
-  
-    // Toggle Feedback Section
+
+    // Event listener untuk tombol tutup modal
+    closeModalBtn.addEventListener("click", closeModal);
+
+    // Event listener untuk membuka/menutup feedback section
     visitorCard.addEventListener("click", function () {
-      if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
-        feedbackSection.style.display = "block";
-      } else {
-        feedbackSection.style.display = "none";
-      }
+        if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
+            feedbackSection.style.display = "block";
+
+            // Muat data dari Firebase hanya saat pertama kali dibuka
+            loadFeedbackFromFirebase((feedbackListData) => {
+                feedbackList.innerHTML = ""; // Bersihkan daftar lama
+                feedbackListData.forEach((feedback) => {
+                    addFeedbackToList(feedback.name, feedback.comment);
+                });
+            });
+        } else {
+            feedbackSection.style.display = "none";
+        }
     });
-  });
-  
+});
+
 
 
 

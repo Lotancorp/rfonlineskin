@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quartz Gallery App</title>
     <link rel="stylesheet" href="style.css">
+     <!-- Firebase SDK -->
+     <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPL347ULfqJQagxznXrRUnwk1Z7jtNHlo",
+            authDomain: "rfonlineskin.firebaseapp.com",
+            databaseURL: "https://rfonlineskin-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            projectId: "rfonlineskin",
+            storageBucket: "rfonlineskin.firebasestorage.app",
+            messagingSenderId: "825230919557",
+            appId: "1:825230919557:web:5d5fb18a2abd5dd96d66ec",
+            measurementId: "G-LRLZ3W5YPD"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Save feedback to Firebase
+        window.saveFeedbackToFirebase = function (name, comment) {
+            const feedbackRef = ref(database, "feedback");
+            push(feedbackRef, { name, comment })
+                .then(() => console.log("Feedback successfully saved"))
+                .catch((error) => console.error("Error saving feedback:", error));
+        };
+
+        // Load feedback from Firebase
+        window.loadFeedbackFromFirebase = function (callback) {
+            const feedbackRef = ref(database, "feedback");
+            onValue(feedbackRef, (snapshot) => {
+                const feedback = snapshot.val();
+                const feedbackList = [];
+                for (const id in feedback) {
+                    feedbackList.push(feedback[id]);
+                }
+                callback(feedbackList);
+            });
+        };
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -189,45 +231,7 @@
             </div>
         </section>
     </main>
-    <script type="module">
-        // Import Firebase SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
-      
-        // Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyAPL347ULfqJQagxznXrRUnwk1Z7jtNHlo",
-          authDomain: "rfonlineskin.firebaseapp.com",
-          projectId: "rfonlineskin",
-          storageBucket: "rfonlineskin.firebasestorage.app",
-          messagingSenderId: "825230919557",
-          appId: "1:825230919557:web:5d5fb18a2abd5dd96d66ec",
-          measurementId: "G-LRLZ3W5YPD"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-      
-        // Define global functions for Firebase
-        window.saveFeedbackToFirebase = function (name, comment) {
-          const feedbackRef = ref(database, "feedback");
-          push(feedbackRef, { name, comment });
-        };
-      
-        window.loadFeedbackFromFirebase = function (callback) {
-          const feedbackRef = ref(database, "feedback");
-          onValue(feedbackRef, (snapshot) => {
-            const feedback = snapshot.val();
-            const feedbackList = [];
-            for (const id in feedback) {
-              feedbackList.push(feedback[id]);
-            }
-            callback(feedbackList);
-          });
-        };
-      </script>
- 
+
         <script src="script.js"></script>
 
             <!-- Google tag (gtag.js) -->
