@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         closeModal();
     });
     
+    
 
     // Event listener untuk tombol tutup modal
     closeModalBtn.addEventListener("click", closeModal);
@@ -197,7 +198,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
+document.addEventListener("DOMContentLoaded", function () {
+    loadFeedbackFromFirebase((feedbackListData) => {
+        feedbackList.innerHTML = ""; // Bersihkan daftar lama
+        feedbackListData.forEach((feedback) => {
+            addFeedbackToList(feedback.name, feedback.comment);
+        });
+    });
+});
+function loadFeedbackFromFirebase(callback) {
+    const feedbackRef = ref(database, "feedback");
+    onValue(feedbackRef, (snapshot) => {
+        const feedback = snapshot.val();
+        const feedbackList = [];
+        for (const id in feedback) {
+            feedbackList.push(feedback[id]);
+        }
+        callback(feedbackList);
+    });
+}
 
 
 
@@ -223,3 +242,22 @@ document.addEventListener('DOMContentLoaded', function () {
 // Array untuk menyimpan semua data visitor
 const visitorData = [];
 
+closeModalBtn.disabled = true;
+function validateForm() {
+    const name = nameField.value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const social = document.getElementById("social").value.trim();
+    const comment = messageField.value.trim();
+
+    if (name && phone && social && comment) {
+        closeModalBtn.disabled = false;
+    } else {
+        closeModalBtn.disabled = true;
+    }
+}
+
+// Panggil validateForm setiap kali ada perubahan pada input
+nameField.addEventListener("input", validateForm);
+document.getElementById("phone").addEventListener("input", validateForm);
+document.getElementById("social").addEventListener("input", validateForm);
+messageField.addEventListener("input", validateForm);
