@@ -131,53 +131,53 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameField = document.getElementById("name");
     const messageField = document.getElementById("message");
     const modal = document.getElementById("feedbackModal");
-
+  
     // Fungsi untuk menutup modal
     function closeModal() {
-        modal.style.display = "none";
-        nameField.value = "";
-        messageField.value = "";
+      modal.style.display = "none";
+      nameField.value = "";
+      messageField.value = "";
     }
-
+  
     // Menyimpan feedback ke Firebase
     submitBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const name = nameField.value.trim();
-        const comment = messageField.value.trim();
-
-        if (name === "" || comment === "") {
-            alert("Please fill out the required fields.");
-            return;
-        }
-
-        // Simpan ke Firebase
-        saveFeedbackToFirebase(name, comment);
-
-        // Bersihkan form
-        closeModal();
+      event.preventDefault();
+  
+      const name = nameField.value.trim();
+      const comment = messageField.value.trim();
+  
+      if (name === "" || comment === "") {
+        alert("Harap isi semua kolom.");
+        return;
+      }
+  
+      // Simpan ke Firebase
+      saveFeedbackToFirebase(name, comment);
+  
+      // Bersihkan form
+      closeModal();
     });
-
+  
     // Muat feedback dari Firebase dan tampilkan di kolom
     loadFeedbackFromFirebase((feedbackListData) => {
-        feedbackList.innerHTML = ""; // Hapus data lama
-        feedbackListData.forEach((feedback) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = `${feedback.name}: ${feedback.comment}`;
-            feedbackList.appendChild(listItem);
-        });
+      feedbackList.innerHTML = ""; // Hapus data lama
+      feedbackListData.forEach((feedback) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${feedback.name}: ${feedback.comment}`;
+        feedbackList.appendChild(listItem);
+      });
     });
-
+  
     // Toggle Feedback Section
     visitorCard.addEventListener("click", function () {
-        if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
-            feedbackSection.style.display = "block";
-        } else {
-            feedbackSection.style.display = "none";
-        }
+      if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
+        feedbackSection.style.display = "block";
+      } else {
+        feedbackSection.style.display = "none";
+      }
     });
-});
-
+  });
+  
 
 
 
