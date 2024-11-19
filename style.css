@@ -557,7 +557,9 @@ body {
     align-items: center; /* Pusatkan modal */
 }
 
-
+.modal.active {
+    display: flex; /* Modal terlihat */
+}
 /* Konten Modal */
 .modal-content {
     background-color: #ffffff;
@@ -634,6 +636,7 @@ body {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin: 10px;
 }
 
 .modal-content button:hover {
@@ -645,3 +648,43 @@ body {
     }
 }
 
+#anonymousBtn {
+    background-color: rgb(112, 231, 205);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#anonymousBtn:hover {
+    background-color: #0aa084;
+    transform: scale(1.05);
+}
+
+#visitorFeedbackSection {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    display: none; /* Default tersembunyi */
+}
+
+#visitorFeedbackSection h3 {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+#feedbackList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#feedbackList li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}

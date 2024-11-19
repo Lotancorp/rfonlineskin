@@ -82,24 +82,25 @@
                     <div class="card" id="visitorCard">
                         <div class="icon-sprite icon-visitor" aria-label="Visitor Logo"></div>
                         <h2>Visitors Information</h2>
-                        <p>Klik untuk memberikan feedback</p>
+                        <p>Feedback from our visitors:</p>
                     </div>
-                    
+
                     <!-- Feedback Modal -->
                     <div id="feedbackModal" class="modal">
                         <div class="modal-content">
                             <span id="closeModal" class="close">&times;</span>
                             <h2 style="text-align: center; color: #007bff;">Visitor Form</h2>
                             <form id="visitorFeedbackForm">
-                                <label for="name">Nama:</label>
+                                <label for="name">Name:</label>
                                 <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
-                                <label for="phone">Nomor Telepon:</label>
+                                <label for="phone">Phone Number:</label>
                                 <input type="tel" id="phone" name="phone" placeholder="Masukkan nomor telepon Anda">
-                                <label for="social">Media Sosial:</label>
+                                <label for="social">Social Media:</label>
                                 <input type="text" id="social" name="social" placeholder="Masukkan media sosial Anda">
-                                <label for="message">Pesan / Komentar:</label>
+                                <label for="message">Comment / Feedback:</label>
                                 <textarea id="message" name="message" placeholder="Masukkan pesan Anda" required></textarea>
-                                <button type="submit">Kirim</button>
+                                <button type="button" id="submitBtn">Submit</button>
+                                <button id="anonymousBtn">Login as Anonymous</button>
                             </form>
                         </div>
                     </div>
@@ -112,6 +113,13 @@
                     </div>
                 </div>
 
+                <!-- Container untuk Visitor Feedback -->
+                <div id="visitorFeedbackSection" style="display: none;">
+                    <h3>Visitor Feedback</h3>
+                    <ul id="feedbackList"></ul>
+                </div>
+
+                
             <!-- Placeholder for portfolio -->
             <div id="portfolioPlaceholder" class="portfolio-container" style="display: none;">
                 <p>Please visit the full portfolio at <a href="https://linktr.ee/quartzgallery22" target="_blank">this link</a></p>

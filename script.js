@@ -83,26 +83,6 @@ window.addEventListener("click", (event) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const visitorCountElement = document.getElementById('visitorCount'); // Elemen untuk menampilkan jumlah visitor
-
-    // Fungsi untuk mengambil data real-time pengguna aktif
-    async function fetchActiveUsers() {
-        try {
-            // Simulasi jumlah pengguna aktif
-            const activeUsers = Math.floor(Math.random() * 10) + 1; // Simulasi angka 1-10
-            visitorCountElement.textContent = activeUsers; // Tampilkan di elemen HTML
-        } catch (error) {
-            console.error("Error fetching active users:", error);
-        }
-    }
-
-    // Jalankan fungsi saat halaman dimuat
-    fetchActiveUsers();
-
-    // Perbarui data setiap 30 detik
-    setInterval(fetchActiveUsers, 30000);
-});
 
 
 
@@ -145,24 +125,89 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const visitorCard = document.getElementById('visitorCard');
-    const feedbackModal = document.getElementById('feedbackModal');
-    const closeModal = document.getElementById('closeModal');
+    const feedbackSection = document.getElementById('visitorFeedbackSection');
+    const feedbackList = document.getElementById('feedbackList');
+    const submitBtn = document.getElementById('submitBtn');
+    const nameField = document.getElementById('name');
+    const phoneField = document.getElementById('phone');
+    const socialField = document.getElementById('social');
+    const messageField = document.getElementById('message');
+    const modal = document.getElementById('feedbackModal');
+    const visitorData = []; // Array untuk menyimpan data visitor
 
-    // Tampilkan modal saat card diklik
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        modal.style.display = 'none';
+        nameField.value = '';
+        phoneField.value = '';
+        socialField.value = '';
+        messageField.value = '';
+    }
+
+    // Fungsi untuk menambahkan feedback ke list
+    function addFeedbackToList(name, comment) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${name}: ${comment}`;
+        feedbackList.appendChild(listItem);
+    }
+
+    // Event listener untuk tombol Submit
+    submitBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const name = nameField.value.trim();
+        const phone = phoneField.value.trim();
+        const social = socialField.value.trim();
+        const comment = messageField.value.trim();
+
+        if (name === '' || comment === '') {
+            alert('Please fill out the required fields.');
+            return;
+        }
+
+        // Simpan data ke array
+        visitorData.push({ name, phone, social, comment });
+
+        // Tambahkan ke feedback list
+        addFeedbackToList(name, comment);
+
+        console.log('Visitor Data:', visitorData); // Debugging
+        closeModal(); // Tutup modal
+    });
+
+    // Toggle Feedback Section
     visitorCard.addEventListener('click', function () {
-        feedbackModal.style.display = 'flex'; // Tampilkan modal
-    });
-
-    // Tutup modal saat tombol "close" diklik
-    closeModal.addEventListener('click', function () {
-        feedbackModal.style.display = 'none'; // Sembunyikan modal
-    });
-
-    // Tutup modal saat pengguna mengklik di luar modal
-    window.addEventListener('click', function (event) {
-        if (event.target === feedbackModal) {
-            feedbackModal.style.display = 'none'; // Sembunyikan modal
+        // Toggle display feedback section
+        if (feedbackSection.style.display === 'none' || feedbackSection.style.display === '') {
+            feedbackSection.style.display = 'block'; // Tampilkan feedback
+        } else {
+            feedbackSection.style.display = 'none'; // Sembunyikan feedback
         }
     });
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('feedbackModal');
+    const anonymousBtn = document.getElementById('anonymousBtn');
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        modal.classList.remove('active'); // Menghapus class active
+        modal.style.display = 'none'; // Menyembunyikan modal
+    }
+
+    // Event listener untuk tombol "Login as Anonymous"
+    anonymousBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('User logged in as Anonymous.');
+        closeModal(); // Menutup modal
+    });
+});
+
+
+// Array untuk menyimpan semua data visitor
+const visitorData = [];
 
