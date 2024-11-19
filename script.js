@@ -132,6 +132,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageField = document.getElementById("message");
     const modal = document.getElementById("feedbackModal");
     const closeModalBtn = document.getElementById("closeModal");
+    const closeModalBtn = document.getElementById("closeModal");
+    closeModalBtn.style.pointerEvents = "none"; // Nonaktifkan klik
+    closeModalBtn.style.opacity = "0.5"; // Tambahkan efek visual
 
     // Fungsi untuk menampilkan modal
     function openModal() {
@@ -179,8 +182,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     // Event listener untuk tombol tutup modal
-    closeModalBtn.addEventListener("click", closeModal);
-
+    closeModalBtn.addEventListener("click", function () {
+        const isDisabled = closeModalBtn.style.pointerEvents === "none";
+        if (isDisabled) {
+            alert("Please fill out the form or login as Anonymous before closing.");
+            return;
+        }
+        closeModal();
+    });
+    
     // Event listener untuk membuka/menutup feedback section
     visitorCard.addEventListener("click", function () {
         if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
@@ -244,20 +254,44 @@ const visitorData = [];
 
 closeModalBtn.disabled = true;
 function validateForm() {
-    const name = nameField.value.trim();
+    const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const social = document.getElementById("social").value.trim();
-    const comment = messageField.value.trim();
+    const comment = document.getElementById("message").value.trim();
 
+    // Periksa apakah semua field terisi
     if (name && phone && social && comment) {
-        closeModalBtn.disabled = false;
+        closeModalBtn.style.pointerEvents = "auto"; // Aktifkan klik
+        closeModalBtn.style.opacity = "1"; // Kembalikan ke normal
     } else {
-        closeModalBtn.disabled = true;
+        closeModalBtn.style.pointerEvents = "none"; // Nonaktifkan klik
+        closeModalBtn.style.opacity = "0.5"; // Tambahkan efek visual
     }
 }
 
+
+// Panggil validateForm setiap kali ada perubahan pada input
+const nameField = document.getElementById("name");
+const phoneField = document.getElementById("phone");
+const socialField = document.getElementById("social");
+const messageField = document.getElementById("message");
+
 // Panggil validateForm setiap kali ada perubahan pada input
 nameField.addEventListener("input", validateForm);
-document.getElementById("phone").addEventListener("input", validateForm);
-document.getElementById("social").addEventListener("input", validateForm);
+phoneField.addEventListener("input", validateForm);
+socialField.addEventListener("input", validateForm);
 messageField.addEventListener("input", validateForm);
+const anonymousBtn = document.getElementById("anonymousBtn");
+
+anonymousBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    console.log("User logged in as Anonymous.");
+    
+    // Aktifkan tombol close
+    closeModalBtn.style.pointerEvents = "auto";
+    closeModalBtn.style.opacity = "1";
+
+    // Tutup modal
+    closeModal();
+});
