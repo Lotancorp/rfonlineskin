@@ -571,6 +571,11 @@ body {
     font-family: Arial, sans-serif;
     animation: fadeIn 0.3s ease-in-out; /* Efek animasi */
 }
+.modal-content button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 
 /* Efek animasi */
 @keyframes fadeIn {
@@ -686,4 +691,103 @@ body {
     padding: 8px;
     border-bottom: 1px solid #ddd;
     color: #333;
+}
+.checkbox-container {
+    margin-top: 10px; /* Memberikan jarak dari elemen di atasnya */
+    display: flex; /* Menggunakan flex untuk menjaga elemen dalam satu baris */
+    align-items: center; /* Menjaga elemen-elemen agar sejajar secara vertikal */
+    font-size: 14px; /* Mengatur ukuran font sesuai dengan skala */
+    line-height: 1.5; /* Mengatur line-height agar teks terlihat lebih rapi */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 8px; /* Memberikan jarak antara checkbox dan teks */
+    width: auto; /* Menggunakan ukuran default browser untuk checkbox agar lebih konsisten */
+    height: auto; /* Menggunakan ukuran default browser untuk checkbox */
+    vertical-align: middle; /* Pastikan checkbox sejajar dengan teks di tengah */
+}
+#leaveFeedbackBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#leaveFeedbackBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Styling untuk feedback container */
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Jarak antar card diperkecil */
+    padding: 10px;
+}
+
+/* Styling untuk setiap feedback card */
+.feedback-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Jarak antara nama dan komentar */
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 14px; /* Ukuran font lebih kecil */
+    line-height: 1.4;
+}
+
+/* Hover effect untuk feedback card */
+.feedback-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Warna selang-seling */
+.feedback-card:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.feedback-card:nth-child(even) {
+    background-color: #eaf3fc;
+}
+
+/* Nama pengunjung */
+.feedback-name {
+    font-size: 16px; /* Ukuran font lebih kecil */
+    font-weight: bold;
+    color: #007bff;
+    margin: 0;
+}
+
+/* Komentar pengunjung */
+.feedback-comment {
+    font-size: 14px; /* Ukuran font lebih kecil */
+    color: #555;
+    margin: 0;
+}
+
+/* Styling untuk tombol Leave Feedback */
+#leaveFeedbackBtn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#leaveFeedbackBtn:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
 }
