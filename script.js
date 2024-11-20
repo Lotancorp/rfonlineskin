@@ -1,14 +1,14 @@
 // script.js
 
-// Akses variabel Firebase dari window
-const database = window.database;
-const auth = window.auth;
+// Akses Firebase
+var database = firebase.database();
+var auth = firebase.auth();
 
 // Fungsi untuk menampilkan satu section dan menyembunyikan yang lain
 function showSection(sectionId) {
-    const sections = ['cardsContainer', 'portfolioPlaceholder', 'applicationPlaceholder', 'databasePlaceholder'];
-    sections.forEach(id => {
-        const element = document.getElementById(id);
+    var sections = ['cardsContainer', 'portfolioPlaceholder', 'applicationPlaceholder', 'databasePlaceholder'];
+    sections.forEach(function(id) {
+        var element = document.getElementById(id);
         if (element) {
             element.style.display = (id === sectionId) ? 'block' : 'none';
             
@@ -23,39 +23,39 @@ function showSection(sectionId) {
 }
 
 // Event listener untuk masing-masing link di sidebar
-document.getElementById('portofolioLink').addEventListener('click', (event) => {
+document.getElementById('portofolioLink').addEventListener('click', function(event) {
     event.preventDefault();
     showSection('portfolioPlaceholder');
 });
 
-document.getElementById('applicationLink').addEventListener('click', (event) => {
+document.getElementById('applicationLink').addEventListener('click', function(event) {
     event.preventDefault();
     showSection('applicationPlaceholder');
 });
 
-document.getElementById('databaseLink').addEventListener('click', (event) => {
+document.getElementById('databaseLink').addEventListener('click', function(event) {
     event.preventDefault();
     showSection('databasePlaceholder');
 });
 
-document.getElementById('homeLink').addEventListener('click', () => {
+document.getElementById('homeLink').addEventListener('click', function() {
     showSection('cardsContainer'); // Tampilkan Dashboard
 });
 
 // Event listener untuk membuka halaman saat card diklik
-document.getElementById('effectFileCard').addEventListener('click', () => {
+document.getElementById('effectFileCard').addEventListener('click', function() {
     window.open('Effect/EffectFileList.html', '_blank'); // Membuka di tab baru
 });
-document.getElementById('ItemEffectlistCard').addEventListener('click', () => {
+document.getElementById('ItemEffectlistCard').addEventListener('click', function() {
     window.open('Item/ItemEffectList.html', '_blank'); // Membuka di tab baru
 });
-document.getElementById('partcileiniCard').addEventListener('click', () => {
+document.getElementById('partcileiniCard').addEventListener('click', function() {
     window.open('Particle/particle.html', '_blank'); // Membuka di tab baru
 });
 
 // Fungsi untuk slider
-let slideIndex = 0;
-const totalSlides = document.getElementsByClassName("slide").length;
+var slideIndex = 0;
+var totalSlides = document.getElementsByClassName("slide").length;
 
 function moveSlide(n) {
     slideIndex = (slideIndex + n + totalSlides) % totalSlides;
@@ -63,26 +63,26 @@ function moveSlide(n) {
 }
 
 function showSlides() {
-    const sliderWrapper = document.querySelector(".slider-wrapper");
-    sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+    var sliderWrapper = document.querySelector(".slider-wrapper");
+    sliderWrapper.style.transform = 'translateX(-' + (slideIndex * 100) + '%)';
 }
 
-setInterval(() => {
+setInterval(function() {
     moveSlide(1);
 }, 5000);
 
 showSlides(); // Inisialisasi tampilan slide pertama
 
 // Toggle dropdown notifikasi
-document.getElementById("notificationBell").addEventListener("click", (event) => {
+document.getElementById("notificationBell").addEventListener("click", function(event) {
     event.stopPropagation();
-    const dropdown = document.getElementById("notificationDropdown");
+    var dropdown = document.getElementById("notificationDropdown");
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
 });
 
 // Tutup dropdown jika klik di luar area dropdown
-document.addEventListener("click", (event) => {
-    const dropdown = document.getElementById("notificationDropdown");
+document.addEventListener("click", function(event) {
+    var dropdown = document.getElementById("notificationDropdown");
     if (dropdown.style.display === "block") {
         dropdown.style.display = "none";
     }
@@ -90,8 +90,8 @@ document.addEventListener("click", (event) => {
 
 // Toggle dropdown profil
 document.addEventListener('DOMContentLoaded', function() {
-    const profileButton = document.getElementById('profileButton');
-    const profileDropdown = document.getElementById('profileDropdown');
+    var profileButton = document.getElementById('profileButton');
+    var profileDropdown = document.getElementById('profileDropdown');
 
     // Tampilkan atau sembunyikan dropdown saat tombol profil diklik
     profileButton.addEventListener('click', function(event) {
@@ -113,11 +113,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Fungsi untuk tombol download
 document.getElementById("downloadButton").addEventListener("click", function() {
     // Dapatkan nama file dari dropdown
-    const selectedFile = document.getElementById("fileSelect").value;
+    var selectedFile = document.getElementById("fileSelect").value;
 
     // Buat link download dengan path ke folder databaseFiles
-    const link = document.createElement("a");
-    link.href = `databaseFiles/${selectedFile}`; // Path ke folder databaseFiles
+    var link = document.createElement("a");
+    link.href = 'databaseFiles/' + selectedFile; // Path ke folder databaseFiles
     link.download = selectedFile; // Nama file yang diunduh
 
     // Tambahkan link ke DOM, klik secara otomatis, lalu hapus
@@ -128,18 +128,18 @@ document.getElementById("downloadButton").addEventListener("click", function() {
 
 // Script untuk modal feedback dan validasi form
 document.addEventListener("DOMContentLoaded", function () {
-    const visitorCard = document.getElementById("visitorCard");
-    const feedbackSection = document.getElementById("visitorFeedbackSection");
-    const feedbackList = document.getElementById("feedbackList");
-    const submitBtn = document.getElementById("submitBtn");
-    const anonymousBtn = document.getElementById("anonymousBtn");
-    const nameField = document.getElementById("name");
-    const messageField = document.getElementById("message");
-    const phoneField = document.getElementById("phone");
-    const socialField = document.getElementById("social");
-    const promotionConsent = document.getElementById("promotionConsent");
-    const modal = document.getElementById("feedbackModal");
-    const leaveFeedbackBtn = document.getElementById("leaveFeedbackBtn");
+    var visitorCard = document.getElementById("visitorCard");
+    var feedbackSection = document.getElementById("visitorFeedbackSection");
+    var feedbackList = document.getElementById("feedbackList");
+    var submitBtn = document.getElementById("submitBtn");
+    var anonymousBtn = document.getElementById("anonymousBtn");
+    var nameField = document.getElementById("name");
+    var messageField = document.getElementById("message");
+    var phoneField = document.getElementById("phone");
+    var socialField = document.getElementById("social");
+    var promotionConsent = document.getElementById("promotionConsent");
+    var modal = document.getElementById("feedbackModal");
+    var leaveFeedbackBtn = document.getElementById("leaveFeedbackBtn");
 
     // Fungsi untuk menampilkan modal
     function openModal() {
@@ -159,9 +159,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (feedbackSection.style.display === "none" || feedbackSection.style.display === "") {
             feedbackSection.style.display = "block";
             // Muat data dari Firebase
-            loadFeedbackFromFirebase((feedbackListData) => {
+            loadFeedbackFromFirebase(function(feedbackListData) {
                 feedbackList.innerHTML = ""; // Bersihkan daftar lama
-                feedbackListData.forEach((feedback) => {
+                feedbackListData.forEach(function(feedback) {
                     addFeedbackToList(feedback.name, feedback.comment);
                 });
             });
@@ -184,19 +184,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fungsi untuk menambahkan feedback ke daftar
     function addFeedbackToList(name, comment) {
-        const feedbackContainer = document.getElementById("feedbackList");
+        var feedbackContainer = document.getElementById("feedbackList");
     
         // Membuat elemen card untuk feedback
-        const feedbackCard = document.createElement("div");
+        var feedbackCard = document.createElement("div");
         feedbackCard.className = "feedback-card";
     
         // Nama pengunjung
-        const feedbackName = document.createElement("h4");
+        var feedbackName = document.createElement("h4");
         feedbackName.textContent = name;
         feedbackName.className = "feedback-name";
     
         // Komentar pengunjung
-        const feedbackComment = document.createElement("p");
+        var feedbackComment = document.createElement("p");
         feedbackComment.textContent = comment;
         feedbackComment.className = "feedback-comment";
     
@@ -210,9 +210,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Fungsi validasi form
     function validateForm() {
-        const name = nameField.value.trim();
-        const comment = messageField.value.trim();
-        const isChecked = promotionConsent.checked;
+        var name = nameField.value.trim();
+        var comment = messageField.value.trim();
+        var isChecked = promotionConsent.checked;
       
         console.log("Name:", name);
         console.log("Comment:", comment);
@@ -238,14 +238,14 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         console.log("Tombol Submit diklik");
     
-        const name = nameField.value.trim();
-        const phone = phoneField.value.trim();
-        const social = socialField.value.trim();
-        const comment = messageField.value.trim();
+        var name = nameField.value.trim();
+        var phone = phoneField.value.trim();
+        var social = socialField.value.trim();
+        var comment = messageField.value.trim();
     
         // Simpan feedback ke Firebase
         saveFeedbackToFirebase(name, phone, social, comment)
-            .then(() => {
+            .then(function() {
                 console.log("Feedback berhasil disimpan ke Firebase");
                 // Tambahkan nama dan komentar ke daftar lokal
                 addFeedbackToList(name, comment);
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 closeModal();
                 alert("Feedback berhasil dikirim. Terima kasih!");
             })
-            .catch((error) => {
+            .catch(function(error) {
                 console.error("Error menyimpan feedback:", error);
                 alert("Terjadi kesalahan saat menyimpan feedback.");
             });
@@ -270,22 +270,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fungsi untuk menyimpan feedback ke Firebase
 function saveFeedbackToFirebase(name, phone, social, comment) {
-    const feedbackRef = database.ref("feedback");
+    var feedbackRef = database.ref("feedback");
     return feedbackRef.push({
-        name,
-        phone,
-        social,
-        comment
+        name: name,
+        phone: phone,
+        social: social,
+        comment: comment
     });
 }
 
 // Fungsi untuk memuat feedback dari Firebase
 function loadFeedbackFromFirebase(callback) {
-    const feedbackRef = database.ref("feedback");
-    feedbackRef.on("value", (snapshot) => {
-        const feedback = snapshot.val();
-        const feedbackList = [];
-        for (const id in feedback) {
+    var feedbackRef = database.ref("feedback");
+    feedbackRef.on("value", function(snapshot) {
+        var feedback = snapshot.val();
+        var feedbackList = [];
+        for (var id in feedback) {
             feedbackList.push(feedback[id]);
         }
         callback(feedbackList);
@@ -293,35 +293,41 @@ function loadFeedbackFromFirebase(callback) {
 }
 
 // Fungsi Login Anonim dan Simpan IP
-async function loginAsAnonymous() {
-    try {
-        console.log("Memulai proses login anonymous");
-        const userCredential = await auth.signInAnonymously();
-        const user = userCredential.user;
+function loginAsAnonymous() {
+    auth.signInAnonymously()
+        .then(function(userCredential) {
+            var user = userCredential.user;
 
-        console.log("Login sukses, UID:", user.uid);
+            console.log("Login sukses, UID:", user.uid);
 
-        // Mendapatkan IP pengguna
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
-        const userIP = ipData.ip;
+            // Mendapatkan IP pengguna
+            fetch('https://api.ipify.org?format=json')
+                .then(function(response) { return response.json(); })
+                .then(function(data) {
+                    var userIP = data.ip;
 
-        console.log("IP Pengguna:", userIP);
+                    console.log("IP Pengguna:", userIP);
 
-        // Simpan IP ke Firebase Realtime Database
-        const anonymousUserRef = database.ref(`anonymousUsers/${user.uid}`);
-        await anonymousUserRef.push({
-            uid: user.uid,
-            ip: userIP,
-            timestamp: new Date().toISOString()
+                    // Simpan IP ke Firebase Realtime Database
+                    var anonymousUserRef = database.ref("anonymousUsers/" + user.uid);
+                    anonymousUserRef.push({
+                        uid: user.uid,
+                        ip: userIP,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    // Menutup modal
+                    closeModal();
+
+                    alert("Login sukses sebagai Anonymous!");
+                })
+                .catch(function(error) {
+                    console.error("Error mendapatkan IP:", error);
+                    alert("Terjadi kesalahan saat mendapatkan IP.");
+                });
+        })
+        .catch(function(error) {
+            console.error("Login gagal:", error);
+            alert("Login gagal: " + error.message);
         });
-
-        // Menutup modal
-        closeModal();
-
-        alert("Login sukses sebagai Anonymous!");
-    } catch (error) {
-        console.error("Login gagal:", error);
-        alert("Login gagal: " + error.message);
-    }
 }
