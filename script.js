@@ -58,7 +58,7 @@ function moveSlide(n) {
 
 function showSlides() {
     const sliderWrapper = document.querySelector(".slider-wrapper");
-    sliderWrapper.style.transform = translateX(-${slideIndex * 100}%);
+    sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
 }
 
 setInterval(() => {
@@ -111,7 +111,7 @@ document.getElementById("downloadButton").addEventListener("click", function() {
 
     // Buat link download dengan path ke folder databaseFiles
     const link = document.createElement("a");
-    link.href = databaseFiles/${selectedFile}; // Path ke folder databaseFiles
+    link.href = `databaseFiles/${selectedFile}`; // Path ke folder databaseFiles
     link.download = selectedFile; // Nama file yang diunduh
 
     // Tambahkan link ke DOM, klik secara otomatis, lalu hapus
@@ -253,4 +253,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
