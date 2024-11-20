@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quartz Gallery App</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-    <!-- Firebase SDK -->
+     <!-- Firebase SDK -->
      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAPL347ULfqJQagxznXrRUnwk1Z7jtNHlo",
             authDomain: "rfonlineskin.firebaseapp.com",
@@ -23,14 +23,9 @@
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        const auth = firebase.auth();
-
-        // Tambahkan variabel ke window agar dapat diakses di script.js
-        window.firebase = firebase;
-        window.database = database;
-        window.auth = auth;
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = firebase.getAuth(app);
 
         // Save feedback to Firebase
         window.saveFeedbackToFirebase = function (name, phone, social, comment) {
@@ -58,6 +53,9 @@
             });
         };
     </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -139,7 +137,7 @@
                     </div>
 
 <!-- Visitor Form Modal -->
-<div id="feedbackModal" class="modal">
+<div id="feedbackModal" class="modal" >
     <div class="modal-content">
         <h2 style="text-align: center; color: #007bff;">Guest Book</h2>
         <form id="visitorFeedbackForm">
@@ -159,7 +157,7 @@
             </div>
 
             <button type="button" id="submitBtn" disabled>Submit</button>
-            <button type="button" id="anonymousBtn">Login as Anonymous</button>
+            <button type="button" id="anonymousBtn" onclick="loginAsAnonymous()">Login as Anonymous</button>
         </form>
     </div>
 </div>
