@@ -804,14 +804,21 @@ body {
 .horizontal-post-card {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Jarak antar card */
-    padding: 10px 15px; /* Padding lebih nyaman */
-    background-color: #ffffff; /* Latar belakang putih */
-    border-radius: 8px; /* Sudut melengkung */
-    border: 1px solid #d9e5f2; /* Border lembut */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Shadow ringan */
-    color: #333333; /* Warna teks */
-    width: 100%; /* Pastikan card memiliki lebar penuh */
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #d9e5f2;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    text-decoration: none; /* Hilangkan garis bawah teks */
+    color: inherit; /* Warna teks mengikuti desain */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer; /* Mouse berubah menjadi tangan saat hover */
+}
+
+.horizontal-post-card:hover {
+    transform: translateY(-5px); /* Efek hover */
+    background-color: #f0f8ff; /* Warna latar saat hover */
 }
 
 .horizontal-post-card img {

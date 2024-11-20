@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const posts = [
-    { img: 'images/FutureSkin.jpg', title: 'Future Army Skin', date: '14 Sep 2022', link: '/Post/Future Army Skin.html' },
+    { img: 'images/FutureSkin.jpg', title: 'Future Army Skin', date: '14 Sep 2022', link: '/Post/FutureArmySkin.html' },
     { img: 'image2.jpg', title: 'Judul Post 2', date: '28 Sep 2024' },
     { img: 'image3.jpg', title: 'Judul Post 3', date: '29 Sep 2024' },
     { img: 'image4.jpg', title: 'Judul Post 4', date: '30 Sep 2024' },
@@ -287,7 +287,7 @@ document.getElementById('cardpost').addEventListener('click', () => {
             // Menambahkan event listener ke setiap card
             postCard.addEventListener('click', () => {
                 if (post.link) {
-                    window.open(post.link, '_self'); // Membuka halaman di tab yang sama
+                    window.open(post.link,'_blank'); // Membuka halaman di tab baru
                 }
             });
 
