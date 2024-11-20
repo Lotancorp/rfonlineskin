@@ -25,6 +25,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
+        const auth = firebase.getAuth(app);
 
         // Save feedback to Firebase
         window.saveFeedbackToFirebase = function (name, phone, social, comment) {
@@ -52,6 +53,9 @@
             });
         };
     </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -153,7 +157,7 @@
             </div>
 
             <button type="button" id="submitBtn" disabled>Submit</button>
-            <button type="button" id="anonymousBtn">Login as Anonymous</button>
+            <button type="button" id="anonymousBtn" onclick="loginAsAnonymous()">Login as Anonymous</button>
         </form>
     </div>
 </div>

@@ -211,39 +211,43 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = nameField.value.trim();
         const comment = messageField.value.trim();
         const isChecked = promotionConsent.checked;
-
+    
+        // Periksa apakah semua field telah terisi dan checkbox dicek
         if (name && comment && isChecked) {
-            submitBtn.disabled = false;
+            submitBtn.disabled = false; // Aktifkan tombol submit
         } else {
-            submitBtn.disabled = true;
+            submitBtn.disabled = true; // Nonaktifkan tombol submit
         }
     }
+    
 
     // Panggil validateForm setiap kali ada perubahan pada input
     nameField.addEventListener("input", validateForm);
     messageField.addEventListener("input", validateForm);
     promotionConsent.addEventListener("change", validateForm);
 
+    
     // Inisialisasi validasi form saat halaman dimuat
     validateForm();
 
     // Event listener untuk tombol Submit
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
-
+    
         const name = nameField.value.trim();
         const phone = phoneField.value.trim();
         const social = socialField.value.trim();
         const comment = messageField.value.trim();
-
+    
         // Simpan feedback ke Firebase
         saveFeedbackToFirebase(name, phone, social, comment);
-
-        // Tambahkan nama dan komentar saja ke daftar lokal
+    
+        // Tambahkan nama dan komentar ke daftar lokal
         addFeedbackToList(name, comment);
-
+    
         // Bersihkan form dan tutup modal
         closeModal();
+        alert("Feedback berhasil dikirim. Terima kasih!");
     });
 
     // Event listener untuk menutup modal saat mengklik di luar area modal
@@ -253,3 +257,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+// Fungsi Login Anonim dan Simpan IP
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+const auth = getAuth(app);
+
+window.loginAsAnonymous = async function () {
+    try {
+        const userCredential = await signInAnonymously(auth);
+        const user = userCredential.user;
+
+        console.log("Login sukses, UID:", user.uid);
+
+        // Mendapatkan IP pengguna
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const userIP = ipData.ip;
+
+        console.log("IP Pengguna:", userIP);
+
+        // Simpan IP ke Firebase Realtime Database
+        const anonymousUserRef = ref(database, `anonymousUsers/${user.uid}`);
+        await push(anonymousUserRef, {
+            uid: user.uid,
+            ip: userIP,
+            timestamp: new Date().toISOString()
+        });
+
+        // Menutup modal
+        const modal = document.getElementById("feedbackModal"); // Pastikan ID ini benar
+        if (modal) {
+            modal.style.display = "none";
+        }
+
+        alert("Login sukses sebagai Anonymous!");
+    } catch (error) {
+        console.error("Login gagal:", error);
+        alert("Login gagal: " + error.message);
+    }
+};
+
+
+
