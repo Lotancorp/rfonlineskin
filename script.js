@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const posts = [
-    { img: 'images/FutureSKin.jpg', title: 'Future Army Skin', date: '14 Sep 2022' },
+    { img: 'images/FutureSkin.jpg', title: 'Future Army Skin', date: '14 Sep 2022', link: '/Post/Future Army Skin.html' },
     { img: 'image2.jpg', title: 'Judul Post 2', date: '28 Sep 2024' },
     { img: 'image3.jpg', title: 'Judul Post 3', date: '29 Sep 2024' },
     { img: 'image4.jpg', title: 'Judul Post 4', date: '30 Sep 2024' },
@@ -268,7 +268,7 @@ document.getElementById('cardpost').addEventListener('click', () => {
     const postContainer = document.getElementById('postDetailsContainer');
     if (postContainer.style.display === 'none') {
         postContainer.style.display = 'block'; // Tampilkan kontainer
-        
+
         // Clear container sebelum memuat ulang (jika sudah ada)
         postContainer.innerHTML = '';
 
@@ -283,10 +283,18 @@ document.getElementById('cardpost').addEventListener('click', () => {
                     <p>Tanggal dibuat: ${post.date}</p>
                 </div>
             `;
+
+            // Menambahkan event listener ke setiap card
+            postCard.addEventListener('click', () => {
+                if (post.link) {
+                    window.open(post.link, '_self'); // Membuka halaman di tab yang sama
+                }
+            });
+
+            // Masukkan card ke dalam kontainer
             postContainer.appendChild(postCard);
         });
     } else {
         postContainer.style.display = 'none'; // Sembunyikan kontainer
     }
 });
-
