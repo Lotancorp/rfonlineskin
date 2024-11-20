@@ -1,5 +1,9 @@
 // script.js
 
+// Akses variabel Firebase dari window
+const database = window.database;
+const auth = window.auth;
+
 // Fungsi untuk menampilkan satu section dan menyembunyikan yang lain
 function showSection(sectionId) {
     const sections = ['cardsContainer', 'portfolioPlaceholder', 'applicationPlaceholder', 'databasePlaceholder'];
@@ -144,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fungsi untuk menutup modal
     function closeModal() {
+        console.log("closeModal dipanggil");
         modal.style.display = "none";
         document.getElementById("visitorFeedbackForm").reset();
         validateForm(); // Update status tombol submit
@@ -173,7 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener untuk tombol "Login as Anonymous"
     anonymousBtn.addEventListener('click', function (event) {
         event.preventDefault();
-        loginAsAnonymous(); // Memanggil fungsi loginAsAnonymous
+        console.log("Tombol 'Login as Anonymous' diklik");
+        loginAsAnonymous();
     });
 
     // Fungsi untuk menambahkan feedback ke daftar
@@ -213,9 +219,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Checkbox Checked:", isChecked);
       
         if (name && comment && isChecked) {
-          submitBtn.disabled = false;
+            submitBtn.disabled = false;
         } else {
-          submitBtn.disabled = true;
+            submitBtn.disabled = true;
         }
     }
 
@@ -230,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener untuk tombol Submit
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault();
+        console.log("Tombol Submit diklik");
     
         const name = nameField.value.trim();
         const phone = phoneField.value.trim();
@@ -237,14 +244,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const comment = messageField.value.trim();
     
         // Simpan feedback ke Firebase
-        saveFeedbackToFirebase(name, phone, social, comment);
+        saveFeedbackToFirebase(name, phone, social, comment)
+            .then(() => {
+                console.log("Feedback berhasil disimpan ke Firebase");
+                // Tambahkan nama dan komentar ke daftar lokal
+                addFeedbackToList(name, comment);
     
-        // Tambahkan nama dan komentar ke daftar lokal
-        addFeedbackToList(name, comment);
-    
-        // Bersihkan form dan tutup modal
-        closeModal();
-        alert("Feedback berhasil dikirim. Terima kasih!");
+                // Bersihkan form dan tutup modal
+                closeModal();
+                alert("Feedback berhasil dikirim. Terima kasih!");
+            })
+            .catch((error) => {
+                console.error("Error menyimpan feedback:", error);
+                alert("Terjadi kesalahan saat menyimpan feedback.");
+            });
     });
 
     // Event listener untuk menutup modal saat mengklik di luar area modal
@@ -258,14 +271,12 @@ document.addEventListener("DOMContentLoaded", function () {
 // Fungsi untuk menyimpan feedback ke Firebase
 function saveFeedbackToFirebase(name, phone, social, comment) {
     const feedbackRef = database.ref("feedback");
-    feedbackRef.push({
+    return feedbackRef.push({
         name,
         phone,
         social,
         comment
-    })
-    .then(() => console.log("Feedback berhasil disimpan"))
-    .catch((error) => console.error("Error menyimpan feedback:", error));
+    });
 }
 
 // Fungsi untuk memuat feedback dari Firebase
@@ -284,6 +295,7 @@ function loadFeedbackFromFirebase(callback) {
 // Fungsi Login Anonim dan Simpan IP
 async function loginAsAnonymous() {
     try {
+        console.log("Memulai proses login anonymous");
         const userCredential = await auth.signInAnonymously();
         const user = userCredential.user;
 
@@ -298,7 +310,7 @@ async function loginAsAnonymous() {
 
         // Simpan IP ke Firebase Realtime Database
         const anonymousUserRef = database.ref(`anonymousUsers/${user.uid}`);
-        anonymousUserRef.push({
+        await anonymousUserRef.push({
             uid: user.uid,
             ip: userIP,
             timestamp: new Date().toISOString()
@@ -312,12 +324,4 @@ async function loginAsAnonymous() {
         console.error("Login gagal:", error);
         alert("Login gagal: " + error.message);
     }
-}
-
-// Pastikan fungsi closeModal dapat diakses oleh loginAsAnonymous
-function closeModal() {
-    const modal = document.getElementById("feedbackModal");
-    modal.style.display = "none";
-    document.getElementById("visitorFeedbackForm").reset();
-    validateForm(); // Update status tombol submit
 }

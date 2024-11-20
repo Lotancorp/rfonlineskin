@@ -9,8 +9,8 @@
      <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";        // Firebase configuration
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAPL347ULfqJQagxznXrRUnwk1Z7jtNHlo",
             authDomain: "rfonlineskin.firebaseapp.com",
@@ -23,9 +23,13 @@
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-        const auth = firebase.getAuth(app);
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+
+        // Tambahkan variabel ke window agar dapat diakses di script.js
+        window.database = database;
+        window.auth = auth;
 
         // Save feedback to Firebase
         window.saveFeedbackToFirebase = function (name, phone, social, comment) {
