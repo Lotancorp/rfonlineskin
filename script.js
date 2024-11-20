@@ -255,9 +255,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const posts = [
+    { img: 'images/GodOfSparta.jpg', title: 'God Of Sparta', date: '14 Aug 2022', link: 'https://lotancorp.github.io/rfonlineskin/Post/GodOfSparta.html' },
     { img: 'images/FutureSkin.jpg', title: 'Future Army Skin', date: '14 Sep 2022', link: 'https://lotancorp.github.io/rfonlineskin/Post/FutureArmySkin.html' },
-    { img: 'image2.jpg', title: 'Judul Post 2', date: '28 Sep 2024' },
-    { img: 'image3.jpg', title: 'Judul Post 3', date: '29 Sep 2024' },
+    { img: 'image3.jpg', title: 'Shadow Armor Skin', date: '15 Oct 2023' },
     { img: 'image4.jpg', title: 'Judul Post 4', date: '30 Sep 2024' },
     { img: 'image5.jpg', title: 'Judul Post 5', date: '1 Oct 2024' },
     { img: 'image6.jpg', title: 'Judul Post 6', date: '2 Oct 2024' },
