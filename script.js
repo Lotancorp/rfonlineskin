@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const posts = [
-    { img: 'images/FutureSkin.jpg', title: 'Future Army Skin', date: '14 Sep 2022', link: '/Post/FutureArmySkin.html' },
+    { img: 'images/FutureSkin.jpg', title: 'Future Army Skin', date: '14 Sep 2022', link: 'https://lotancorp.github.io/rfonlineskin/Post/FutureArmySkin.html' },
     { img: 'image2.jpg', title: 'Judul Post 2', date: '28 Sep 2024' },
     { img: 'image3.jpg', title: 'Judul Post 3', date: '29 Sep 2024' },
     { img: 'image4.jpg', title: 'Judul Post 4', date: '30 Sep 2024' },
