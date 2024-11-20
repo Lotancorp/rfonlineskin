@@ -791,3 +791,49 @@ body {
     background-color: #0056b3;
     transform: scale(1.03);
 }
+
+#postDetailsContainer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e6f3ff; /* Warna biru muda */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sedikit shadow */
+    width: 100%; /* Lebar penuh */
+}
+
+.horizontal-post-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Jarak antar card */
+    padding: 10px 15px; /* Padding lebih nyaman */
+    background-color: #ffffff; /* Latar belakang putih */
+    border-radius: 8px; /* Sudut melengkung */
+    border: 1px solid #d9e5f2; /* Border lembut */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Shadow ringan */
+    color: #333333; /* Warna teks */
+    width: 100%; /* Pastikan card memiliki lebar penuh */
+}
+
+.horizontal-post-card img {
+    width: 60px; /* Ukuran gambar sedikit lebih besar */
+    height: 60px;
+    border-radius: 4px; /* Sudut gambar melengkung */
+    margin-right: 15px;
+    object-fit: cover; /* Gambar terpotong rapi */
+}
+
+.horizontal-post-card .post-card-content {
+    flex: 1; /* Isi card menyesuaikan ruang */
+}
+
+.horizontal-post-card h3 {
+    margin: 0;
+    font-size: 18px; /* Ukuran font judul */
+    color: #0056b3; /* Warna biru tema */
+}
+
+.horizontal-post-card p {
+    margin: 5px 0 0;
+    font-size: 14px; /* Ukuran font deskripsi */
+    color: #666666; /* Warna abu-abu lembut */
+}

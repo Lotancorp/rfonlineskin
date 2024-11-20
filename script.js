@@ -253,3 +253,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+const posts = [
+    { img: 'images/FutureSKin.jpg', title: 'Future Army Skin', date: '14 Sep 2022' },
+    { img: 'image2.jpg', title: 'Judul Post 2', date: '28 Sep 2024' },
+    { img: 'image3.jpg', title: 'Judul Post 3', date: '29 Sep 2024' },
+    { img: 'image4.jpg', title: 'Judul Post 4', date: '30 Sep 2024' },
+    { img: 'image5.jpg', title: 'Judul Post 5', date: '1 Oct 2024' },
+    { img: 'image6.jpg', title: 'Judul Post 6', date: '2 Oct 2024' },
+    { img: 'image7.jpg', title: 'Judul Post 7', date: '3 Oct 2024' },
+];
+
+document.getElementById('cardpost').addEventListener('click', () => {
+    const postContainer = document.getElementById('postDetailsContainer');
+    if (postContainer.style.display === 'none') {
+        postContainer.style.display = 'block'; // Tampilkan kontainer
+        
+        // Clear container sebelum memuat ulang (jika sudah ada)
+        postContainer.innerHTML = '';
+
+        // Tambahkan daftar post secara dinamis
+        posts.forEach(post => {
+            const postCard = document.createElement('div');
+            postCard.className = 'horizontal-post-card';
+            postCard.innerHTML = `
+                <img src="${post.img}" alt="${post.title}">
+                <div class="post-card-content">
+                    <h3>${post.title}</h3>
+                    <p>Tanggal dibuat: ${post.date}</p>
+                </div>
+            `;
+            postContainer.appendChild(postCard);
+        });
+    } else {
+        postContainer.style.display = 'none'; // Sembunyikan kontainer
+    }
+});
+

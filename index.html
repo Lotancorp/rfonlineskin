@@ -132,46 +132,49 @@
                         <p>Feedback from our visitors:</p>
                     </div>
 
-<!-- Visitor Form Modal -->
-<div id="feedbackModal" class="modal">
-    <div class="modal-content">
-        <h2 style="text-align: center; color: #007bff;">Guest Book</h2>
-        <form id="visitorFeedbackForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Input Your Name" required>
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" placeholder="Input Your Phone Number">
-            <label for="social">Social Media:</label>
-            <input type="text" id="social" name="social" placeholder="Input Your Social Media">
-            <label for="message">Comment / Feedback:</label>
-            <textarea id="message" name="message" placeholder="Give Us Feedback" required></textarea>
+                            <!-- Visitor Form Modal -->
+                            <div id="feedbackModal" class="modal">
+                                <div class="modal-content">
+                                    <h2 style="text-align: center; color: #007bff;">Guest Book</h2>
+                                    <form id="visitorFeedbackForm">
+                                        <label for="name">Name:</label>
+                                        <input type="text" id="name" name="name" placeholder="Input Your Name" required>
+                                        <label for="phone">Phone Number:</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="Input Your Phone Number">
+                                        <label for="social">Social Media:</label>
+                                        <input type="text" id="social" name="social" placeholder="Input Your Social Media">
+                                        <label for="message">Comment / Feedback:</label>
+                                        <textarea id="message" name="message" placeholder="Give Us Feedback" required></textarea>
 
-            <!-- Checkbox for promotional messages -->
-            <div class="checkbox-container">
-                <input type="checkbox" id="promotionConsent" name="promotionConsent">
-                <label for="promotionConsent">I agree to receive promotional messages from Quartz Gallery</label>
-            </div>
+                                        <!-- Checkbox for promotional messages -->
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="promotionConsent" name="promotionConsent">
+                                            <label for="promotionConsent">I agree to receive promotional messages from Quartz Gallery</label>
+                                        </div>
 
-            <button type="button" id="submitBtn" disabled>Submit</button>
-            <button type="button" id="anonymousBtn">Login as Anonymous</button>
-        </form>
-    </div>
-</div>
+                                        <button type="button" id="submitBtn" disabled>Submit</button>
+                                        <button type="button" id="anonymousBtn">Login as Anonymous</button>
+                                    </form>
+                                </div>
+                            </div>
 
                                                                             
-                    <!-- Particle Information -->
-                    <div class="card">
+                    <!-- Post Information -->
+                    <div class="card" id="cardpost"> 
                         <div class="icon-sprite icon-particle" aria-label="Particle Logo"></div>
-                        <h2>Particle Information</h2>
-                        <p>Particle data here</p>
+                        <h2>Quartz Gallery Skin Package</h2>
+                        <p>Package Skin Here</p>
                     </div>
-                </div>
 
-                <div id="visitorFeedbackSection" style="display: none;">
+
+
+                </div>
+                    <div id="visitorFeedbackSection" style="display: none;">
                     <h3>Visitor Feedback</h3>
                     <div id="feedbackList" class="feedback-container"></div>
                     <button id="leaveFeedbackBtn">Leave Feedback</button>
                 </div>
+                <div id="postDetailsContainer" style="display: none;"></div> 
                 
             <!-- Placeholder for portfolio -->
             <div id="portfolioPlaceholder" class="portfolio-container" style="display: none;">
