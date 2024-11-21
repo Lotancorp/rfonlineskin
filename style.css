@@ -18,6 +18,7 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Tambahkan sedikit bayangan */
 }
 
 .sidebar .logo {
@@ -29,7 +30,7 @@ body {
     cursor: pointer; /* Menambahkan pointer saat di-hover */
 }
 
-
+/* Gaya untuk link menu */
 .sidebar .menu a {
     text-decoration: none;
     color: #0D47A1; /* Warna teks biru gelap */
@@ -37,12 +38,22 @@ body {
     display: block;
     border-radius: 8px;
     margin-bottom: 10px;
-    transition: background-color 0.3s;
+    background: #E3F2FD; /* Warna latar awal */
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.6), 
+                inset -2px -2px 5px rgba(0, 0, 0, 0.1); /* Efek emboss */
+    transition: all 0.3s ease; /* Transisi yang halus */
 }
 
+/* Efek hover */
 .sidebar .menu a:hover {
-    background-color: #B3E5FC; /* Warna hover biru pastel lebih terang */
+    background: linear-gradient(180deg, #FFFFFF, #B3E5FC); /* Gradien hover */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.9); /* Efek bevel */
+    color: #003C8F; /* Warna teks lebih gelap */
+    transform: scale(1.02); /* Sedikit memperbesar elemen */
+    cursor: pointer;
 }
+
 
 /* Panel Utama */
 .main-content {
@@ -208,7 +219,7 @@ body {
 .icon-monster { background-position: -500px -200px; }
 .icon-others { background-position: -400px -200px; }
 
-.icon-particle { background-position: -100px -300px; }
+.icon-particle { background-position: -400px -200px; }
 /* Hover effect for the particle icon */
 .card:hover .icon-particle {
     filter: invert(34%) ;
@@ -322,83 +333,8 @@ body {
     background-color: #f0f7ff; /* Latar belakang */
 }
 
-/* Notification Bell */
-.notification {
-    position: relative;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #333;
-    outline: none; /* Hilangkan outline default */
-}
 
-.notification .fas.fa-bell {
-    margin-right: 5px;
-}
 
-#notificationBadge {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background-color: #e74c3c; /* Warna merah untuk badge */
-    color: #fff;
-    border-radius: 50%;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-/* Dropdown Notification */
-.notification-dropdown {
-    display: none; /* Default tersembunyi */
-    position: absolute;
-    top: 40px; /* Jarak dari tombol notifikasi */
-    right: 0; /* Posisi dropdown di kanan */
-    background-color: #ffffff; /* Latar belakang dropdown */
-    border: 1px solid #ddd; /* Border ringan */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow untuk efek elevasi */
-    padding: 10px; /* Spasi di dalam dropdown */
-    border-radius: 8px; /* Sudut melengkung */
-    z-index: 1000; /* Pastikan berada di atas elemen lain */
-    width: 300px; /* Lebar dropdown */
-}
-
-.notification-dropdown ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.notification-dropdown li {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    color: #333;
-    border-bottom: 1px solid #f0f0f0; /* Garis pemisah antar item */
-    transition: background-color 0.3s ease; /* Efek hover */
-}
-
-.notification-dropdown li:last-child {
-    border-bottom: none; /* Hilangkan garis di item terakhir */
-}
-
-.notification-dropdown li a {
-    text-decoration: none;
-    color: #007bff; /* Warna biru untuk link */
-    transition: color 0.3s ease; /* Efek hover */
-}
-
-.notification-dropdown li a:hover {
-    text-decoration: underline;
-    color: #0056b3; /* Warna biru lebih gelap saat hover */
-}
-
-.notification-dropdown li:hover {
-    background-color: #f9f9f9; /* Warna latar belakang saat hover */
-}
-.notification-dropdown {
-    z-index: 1000; /* Pastikan berada di atas elemen lain */
-}
 
 
 

@@ -109,9 +109,9 @@ document.getElementById("downloadButton").addEventListener("click", function() {
     // Dapatkan nama file dari dropdown
     const selectedFile = document.getElementById("fileSelect").value;
 
-    // Buat link download dengan path ke folder databaseFiles
+    // Buat link download dengan path ke folder databaseFiles di GitHub Pages
     const link = document.createElement("a");
-    link.href = `databaseFiles/${selectedFile}`; // Path ke folder databaseFiles
+    link.href = `https://lotancorp.github.io/rfonlineskin/databaseFiles/${selectedFile}`; // URL lengkap
     link.download = selectedFile; // Nama file yang diunduh
 
     // Tambahkan link ke DOM, klik secara otomatis, lalu hapus
@@ -299,57 +299,3 @@ document.getElementById('cardpost').addEventListener('click', () => {
     }
 });
 
-// Data baru untuk notifikasi
-const newPosts = [
-    { title: 'New Shadow Skin', link: 'https://lotancorp.github.io/rfonlineskin/Post/NewShadowSkin.html' },
-    { title: 'New Monster Skin', link: 'https://lotancorp.github.io/rfonlineskin/Post/NewMonsterSkin.html' }
-];
-
-// Elemen DOM
-const notificationDropdown = document.getElementById('notificationDropdown');
-const notificationBadge = document.getElementById('notificationBadge');
-const notificationList = document.getElementById('notificationList');
-const notificationBell = document.getElementById('notificationBell');
-const dropdownRect = notificationDropdown.getBoundingClientRect();
-console.log('Dropdown position:', dropdownRect);
-// Set nilai awal dropdown
-notificationDropdown.style.display = 'none';
-
-// Fungsi untuk memperbarui notifikasi
-function updateNotifications() {
-    // Perbarui jumlah notifikasi di badge
-    notificationBadge.textContent = newPosts.length;
-
-    // Tambahkan notifikasi baru ke dropdown
-    notificationList.innerHTML = ''; // Kosongkan list sebelumnya
-    newPosts.forEach(post => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-            Quartz Gallery telah Update Post baru bernama: 
-            <a href="${post.link}" target="_blank">${post.title}</a>.
-        `;
-        notificationList.appendChild(listItem);
-    });
-}
-
-// Panggil fungsi untuk memperbarui notifikasi
-updateNotifications();
-
-// Event listener untuk toggle dropdown
-notificationBell.addEventListener('click', () => {
-    const currentDisplay = window.getComputedStyle(notificationDropdown).display;
-    if (currentDisplay === 'none') {
-        notificationDropdown.style.display = 'block'; // Tampilkan dropdown
-    } else {
-        notificationDropdown.style.display = 'none'; // Sembunyikan dropdown
-    }
-    console.log('Notification dropdown toggled:', currentDisplay);
-});
-
-// Klik di luar dropdown untuk menutupnya
-document.addEventListener('click', (event) => {
-    if (!notificationBell.contains(event.target) && !notificationDropdown.contains(event.target)) {
-        notificationDropdown.style.display = 'none';
-        console.log('Dropdown closed');
-    }
-});
