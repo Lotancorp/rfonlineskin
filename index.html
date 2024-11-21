@@ -228,7 +228,7 @@
             <!-- Explorer untuk Database -->
             <div id="databasePlaceholder" class="database-container" style="display: none;">
                 <div class="database-card">
-                    <h3>Database Download</h3>
+                    <h3>Chef Database Download</h3>
                     <div class="database-dropdown">
                         <label for="fileSelect">Default File:</label>
                         <select id="fileSelect">
@@ -237,6 +237,17 @@
                             <option value="Patternlist.txt">Patternlist</option>
                             <option value="Particle.ini">Particle</option>
                             <option value="Chef.zip">Chef</option> <!-- Opsi baru untuk Chef.zip -->
+                        </select>
+                        <button id="downloadButton">Download</button>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <h3>Resource Database Download</h3>
+                    <div class="resource-dropdown">
+                        <label for="fileSelect">Default Excel File:</label>
+                        <select id="fileSelect">
+                            <option value="Resource.edf.zip">Resource EDF</option>
+                            <option value="Item_EDF.zip">Item EDF</option>
                         </select>
                         <button id="downloadButton">Download</button>
                     </div>

@@ -398,6 +398,22 @@ body {
     gap: 10px;
 }
 
+/* Gaya untuk Resource */
+.resource-card {
+    background-color: #f0f7ff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resource-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 #fileSelect {
     padding: 8px;
     border-radius: 4px;

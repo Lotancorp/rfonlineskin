@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.getElementById("downloadButton").addEventListener("click", function() {
     // Dapatkan nama file dari dropdown
     const selectedFile = document.getElementById("fileSelect").value;
-
     // Buat link download dengan path ke folder databaseFiles di GitHub Pages
     const link = document.createElement("a");
     link.href = `https://lotancorp.github.io/rfonlineskin/databaseFiles/${selectedFile}`; // URL lengkap
