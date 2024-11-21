@@ -125,7 +125,7 @@ document.getElementById("resourceDownloadButton").addEventListener("click", func
 
     // Buat link download dengan path ke folder databaseFiles
     const link = document.createElement("a");
-    link.href = `https://lotancorp.github.io/rfonlineskin/databaseFiles/${selectedFile}`; // URL lengkap
+    link.href = `https://github.com/Lotancorp/rfonlineskin/raw/refs/heads/main/databaseFiles/${selectedFile}`; // URL lengkap
     link.download = selectedFile; // Nama file yang diunduh
 
     // Tambahkan link ke DOM, klik secara otomatis, lalu hapus
