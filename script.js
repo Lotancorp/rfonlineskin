@@ -118,6 +118,22 @@ document.getElementById("downloadButton").addEventListener("click", function() {
     link.click();
     document.body.removeChild(link);
 });
+// Fungsi untuk tombol download Resource
+document.getElementById("resourceDownloadButton").addEventListener("click", function () {
+    // Dapatkan nama file dari dropdown Resource
+    const selectedFile = document.getElementById("resourceFileSelect").value;
+
+    // Buat link download dengan path ke folder databaseFiles
+    const link = document.createElement("a");
+    link.href = `https://lotancorp.github.io/rfonlineskin/databaseFiles/${selectedFile}`; // URL lengkap
+    link.download = selectedFile; // Nama file yang diunduh
+
+    // Tambahkan link ke DOM, klik secara otomatis, lalu hapus
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
 
 // Script untuk modal feedback dan validasi form
 document.addEventListener("DOMContentLoaded", function () {
