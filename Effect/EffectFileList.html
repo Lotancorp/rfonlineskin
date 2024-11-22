@@ -15,7 +15,12 @@
         <button class="search-button" onclick="searchTable()">Search</button>
     </div>
 
-
+    <div id="howToUseIcon" class="how-to-use">
+        <i class="icon-help">How to Use ?</i>
+        <div class="tooltip">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at magna ligula. Sed convallis orci sit amet dolor aliquet, in posuere elit scelerisque.</p>
+        </div>
+    </div>
     
     <!-- Container untuk tabel -->
     <div id="tableContainer" class="table-container"></div>
@@ -23,7 +28,6 @@
     <!-- Kontainer untuk tombol Add Row dan Add Column -->
     <div id="buttonContainer" class="button-container">
         <button id="addRowButton" onclick="addRow()">Add Row</button>
-        <button id="addColumnButton" onclick="addColumn()">Add Column</button>
     </div>
     <!-- Kontainer untuk Chef Bar -->
     <div class="chef-bar">
@@ -50,8 +54,8 @@
             <option value="WINDWEAPON">WINDWEAPON</option>
         </select>
         
-        <input type="text" id="textbox1" placeholder="Folder 1">
-        <input type="text" id="textbox2" placeholder="Folder 2">
+        <input type="text" id="textbox1" placeholder="Folder">
+        <input type="text" id="textbox2" placeholder="FileName.EFF">
         
         <label for="qgCheckbox">
             <input type="checkbox" id="qgCheckbox"> QG

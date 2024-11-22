@@ -253,3 +253,48 @@ th {
 #inputEffButton:hover {
     background-color: #0D47A1; /* Warna latar belakang saat di-hover */
 }
+
+/* Styling untuk ikon */
+.how-to-use {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.how-to-use .icon-help {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+/* Tooltip styling */
+.how-to-use .tooltip {
+    display: none; /* Default: tooltip tidak terlihat */
+    position: fixed; /* Posisi tetap di layar */
+    top: 50%; /* Vertikal di tengah layar */
+    left: 50%; /* Horizontal di tengah layar */
+    transform: translate(-50%, -50%); /* Pusatkan elemen secara sempurna */
+    background-color: white;
+    color: #333;
+    padding: 20px; /* Padding lebih besar untuk kotak */
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 16px; /* Ukuran font lebih besar */
+    max-width: 600px; /* Lebar maksimum kotak */
+    text-align: center; /* Teks rata tengah */
+    z-index: 1001;
+}
+
+/* Tampilkan tooltip saat di-hover */
+.how-to-use:hover .tooltip {
+    display: block; /* Tampilkan tooltip */
+}
