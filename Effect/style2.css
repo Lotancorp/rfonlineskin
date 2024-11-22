@@ -265,35 +265,47 @@ th {
 
 .how-to-use .icon-help {
     display: inline-block;
-    width: 100px;
-    height: 30px;
     font-size: 15px;
     text-align: center;
-    line-height: 30px;
+    padding: 5px 15px;
     background-color: #007bff;
     color: white;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efek hover untuk ikon */
+.how-to-use .icon-help:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Tooltip styling */
 .how-to-use .tooltip {
     display: none; /* Default: tooltip tidak terlihat */
-    position: fixed; /* Posisi tetap di layar */
+    position: fixed; /* Tetap di layar */
     top: 50%; /* Vertikal di tengah layar */
     left: 50%; /* Horizontal di tengah layar */
-    transform: translate(-50%, -50%); /* Pusatkan elemen secara sempurna */
-    background-color: white;
-    color: #333;
-    padding: 20px; /* Padding lebih besar untuk kotak */
-    border-radius: 8px;
+    transform: translate(-50%, -50%); /* Pusatkan elemen */
+    background-color: rgb(200, 240, 250); /* Warna lembut */
+    color: #333; /* Warna teks */
+    padding: 20px;
+    border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    font-size: 16px; /* Ukuran font lebih besar */
-    max-width: 600px; /* Lebar maksimum kotak */
-    text-align: left; /* Teks rata kiri */
+    font-size: 16px;
+    max-width: 600px;
+    text-align: left;
     z-index: 1001;
 }
+
 /* Tampilkan tooltip saat di-hover */
 .how-to-use:hover .tooltip {
-    display: block; /* Tampilkan tooltip */
+    display: block;
+}
+
+.how-to-use .tooltip strong {
+    color: #003366 !important; /* Dark Blue */
+    font-weight: bold; /* Pastikan tetap tebal */
 }
