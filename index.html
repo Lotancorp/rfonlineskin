@@ -71,7 +71,17 @@
     <main class="main-content">
         <!-- Top Panel (Header) -->
             <header class="top-bar">
-                <input type="text" placeholder="Search...">
+                <div style="display: flex; align-items: center; margin-top: 10px;">
+                    <input type="text" id="searchInput" placeholder="Search..." style="margin-right: 10px;">
+                    <div id="infoBox" style="background-color: #f0f8ff; padding: 10px 15px; border-radius: 5px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); font-size: 14px; color: #003366; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 16px;">&#8592;</span> <!-- Panah ke kiri -->
+                        Search Catalogue
+                    </div>
+                </div>
+                <div id="searchResults"></div>
+                
+                <div id="searchResults"></div>
+                
                 <div class="menu-items">
                             <!-- Notification Bell -->
                             <button class="notification" id="notificationBell" style="display: none;">

@@ -835,3 +835,47 @@ body {
     font-size: 14px; /* Ukuran font deskripsi */
     color: #666666; /* Warna abu-abu lembut */
 }
+
+#searchResults {
+    margin-top: 10px;
+}
+
+.post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post img {
+    margin-right: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.post h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.post p {
+    margin: 5px 0;
+    color: gray;
+}
+
+.post a {
+    color: blue;
+    text-decoration: underline;
+}
+#infoBox {
+    background-color: #f0f8ff; /* Warna latar belakang biru muda */
+    padding: 10px 15px; /* Padding untuk ruang di dalam kotak */
+    border-radius: 5px; /* Membuat sudut kotak membulat */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+    font-size: 14px; /* Ukuran font */
+    color: #003366; /* Warna teks biru gelap */
+    font-weight: bold; /* Teks tebal */
+    display: flex; /* Mengatur panah dan teks secara horizontal */
+    align-items: center; /* Vertikal rata tengah */
+    gap: 5px; /* Jarak antara panah dan teks */
+    white-space: nowrap; /* Mencegah teks membungkus */
+}

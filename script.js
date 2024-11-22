@@ -314,3 +314,43 @@ document.getElementById('cardpost').addEventListener('click', () => {
     }
 });
 
+function searchPosts() {
+    const query = document.getElementById('searchInput').value.toLowerCase(); // Ambil nilai input dan ubah menjadi huruf kecil
+    const resultsContainer = document.getElementById('searchResults'); // Elemen untuk menampilkan hasil
+
+    // Hapus hasil pencarian sebelumnya
+    resultsContainer.innerHTML = '';
+
+    // Jika kotak pencarian kosong, jangan tampilkan apa pun
+    if (query.trim() === '') {
+        return;
+    }
+
+    // Filter data berdasarkan judul yang mengandung query
+    const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(query));
+
+    // Jika tidak ada hasil, tampilkan pesan
+    if (filteredPosts.length === 0) {
+        resultsContainer.innerHTML = '<p>No results found.</p>';
+        return;
+    }
+
+    // Tampilkan hasil pencarian
+    filteredPosts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.classList.add('post'); // Tambahkan kelas untuk styling
+        postElement.innerHTML = `
+            <img src="${post.img}" alt="${post.title}" style="width: 50px; height: 50px;">
+            <div>
+                <h3>${post.title}</h3>
+                <p>${post.date}</p>
+                ${post.link ? `<a href="${post.link}" target="_blank">Read More</a>` : ''}
+            </div>
+        `;
+        resultsContainer.appendChild(postElement);
+    });
+}
+
+
+// Event listener untuk memanggil fungsi pencarian saat pengguna mengetik
+document.getElementById('searchInput').addEventListener('input', searchPosts);
