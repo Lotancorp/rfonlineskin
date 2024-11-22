@@ -290,10 +290,9 @@ th {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     font-size: 16px; /* Ukuran font lebih besar */
     max-width: 600px; /* Lebar maksimum kotak */
-    text-align: center; /* Teks rata tengah */
+    text-align: left; /* Teks rata kiri */
     z-index: 1001;
 }
-
 /* Tampilkan tooltip saat di-hover */
 .how-to-use:hover .tooltip {
     display: block; /* Tampilkan tooltip */
