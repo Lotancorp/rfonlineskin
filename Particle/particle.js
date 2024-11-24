@@ -458,7 +458,6 @@ function processNumbers(largeInput, smallInput) {
         else if (line.match(/^INDEX\s*=\s*\d+/)) {
             const oldIndex = line.match(/\d+/)[0];
             line = line.replace(/INDEX\s*=\s*\d+/, `INDEX =${currentNumber}`);
-            changeLog.push(`Change ${oldIndex} to ${currentNumber}`);
             currentNumber++; // Increment after processing INDEX line
         }
 
